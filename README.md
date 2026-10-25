@@ -23,25 +23,26 @@ Windows PowerShell 中，创建虚拟环境使用 `py -3.12 -m venv .venv`，激
 
 依赖安装需要联网；安装完成后，所有基础练习与测试均可离线运行，不需要 API Key；MCP 的 stdio 验收会启动本项目提供的本地测试子进程，HTTP 测试不开放端口。`requirements-lock.txt` 锁定本次在 Python 3.12 / Linux 下验证的依赖版本；`requirements.txt` 提供允许升级的兼容版本范围，升级后应重新验证。
 
-默认测试只检查运行环境，练习测试全部跳过。初始结果应为 **6 项环境检查通过，练习测试全部 skipped**；这不代表练习已经完成。GitHub Actions 的绿色状态同样只表示环境检查和 Python 语法检查通过。
+默认测试只检查运行环境，练习测试全部跳过。初始结果应为 **7 项环境检查通过，练习测试全部 skipped**；这不代表练习已经完成。GitHub Actions 的绿色状态同样只表示环境检查和 Python 语法检查通过。
 
 ## 学习入口
 
 | 主题 | 当前练习范围 | 入口 |
 | --- | --- | --- |
 | LangChain | 10 级：基础组件、并行与路由、结构化输出、多工具 agent、记忆、可靠性、异步、流式输出 | [LangChain 分级练习](langchain_practice/README.md) |
-| LangGraph | 条件分支、有界重试 | [LangGraph 练习](langgraph_practice/README.md) |
+| LangGraph | 10 级：状态合并、并行与 Send、checkpoint、人工中断、失败恢复、子图、流式观测 | [LangGraph 分级练习](langgraph_practice/README.md) |
 | RAG | 11 级：基础六级、Advanced RAG、LangGraph RAG、GraphRAG 局部图检索 | [RAG 分级练习](rag_practice/README.md) |
 | MCP | 10 级：基础协议与 server/client、stdio、HTTP、分页、并发、文件边界、LangChain 适配、多服务组合 | [MCP 分级练习](mcp_practice/README.md) |
 
 各主题的 README 提供每级前置知识、输入输出约定、独立测试命令与完成标准。LangChain 基础两级可作为 RAG 生成部分的准备；RAG 基础和知识图谱分支不要求先学 LangGraph，工作流分支则需要。先选一条路径，逐级完成即可。
 
-原有 LangChain 基础文件和测试入口保持可用。只需修改对应练习文件；practice_support.py、LangChain 的 offline_models.py，以及 MCP 的 reference_server.py / test_support.py 是提供好的测试设施。
+原有 LangChain、LangGraph 基础文件和测试入口保持可用。只需修改对应练习文件；practice_support.py、LangChain 的 offline_models.py，以及 MCP 的 reference_server.py / test_support.py 是提供好的测试设施。
 
 ```bash
 python -m pytest --run-exercises tests/test_langchain_practice.py -q
 python -m pytest --run-exercises tests/langchain -q
 python -m pytest --run-exercises tests/test_langgraph_practice.py -q
+python -m pytest --run-exercises tests/langgraph -q
 python -m pytest --run-exercises tests/rag/test_level01_documents.py -q
 python -m pytest --run-exercises tests/rag -q
 python -m pytest --run-exercises tests/mcp -q
