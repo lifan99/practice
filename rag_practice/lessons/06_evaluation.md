@@ -48,3 +48,5 @@ python -m pytest --run-exercises tests/rag/test_level06_evaluation.py -q
 完成标准：测试通过，实验记录可复现，并能说明“来源被找到”“支持答案的具体句子被找到”“最终答案正确”为什么是三个不同判断。
 
 本问题集仅是组件连通性样例，规模小、关键词明显，不能支持真实质量结论。完成后再加入自然语言改写、有多个相关来源和无答案的问题；无答案问题不纳入本题的 recall 均值，可另行评估拒答。
+
+下一阶段：[Level 7：混合检索与 RRF](07_hybrid.md)。也可以根据兴趣选择 [LangGraph RAG](09_workflow.md) 或 [GraphRAG 图谱建模](10_knowledge_graph.md)，依赖关系见 [学习路径](../README.md)。

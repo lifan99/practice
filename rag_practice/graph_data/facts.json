@@ -1,0 +1,6 @@
+[
+  {"subject": "Alice", "predicate": "WORKS_ON", "object": "Atlas", "source": "team.md"},
+  {"subject": "Atlas", "predicate": "USES", "object": "VectorStore", "source": "architecture.md"},
+  {"subject": "VectorStore", "predicate": "SUPPORTS", "object": "Retrieval", "source": "search.md"},
+  {"subject": "Bob", "predicate": "REVIEWS", "object": "Atlas", "source": "team.md"}
+]

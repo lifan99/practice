@@ -39,8 +39,13 @@ Windows PowerShell 中，创建虚拟环境使用 `py -3.12 -m venv .venv`，激
 | 8 | [RAG Level 4](rag_practice/lessons/04_generation.md) | 根据给定证据组织模型调用 |
 | 9 | [RAG Level 5](rag_practice/lessons/05_pipeline.md) | 组合问答流程，处理空结果与异常 |
 | 10 | [RAG Level 6](rag_practice/lessons/06_evaluation.md) | 评估来源召回，比较切分参数 |
+| 11 | [Advanced RAG · Level 7](rag_practice/lessons/07_hybrid.md) | 融合关键词与向量检索排名 |
+| 12 | [Advanced RAG · Level 8](rag_practice/lessons/08_reranking.md) | 重排候选，控制证据上下文预算 |
+| 13 | [LangGraph RAG · Level 9](rag_practice/lessons/09_workflow.md) | 评估证据、改写问题、有界重试 |
+| 14 | [GraphRAG · Level 10](rag_practice/lessons/10_knowledge_graph.md) | 建立实体关系与来源图谱 |
+| 15 | [GraphRAG · Level 11](rag_practice/lessons/11_graph_retrieval.md) | 多跳图检索，回溯原文支持回答 |
 
-各目录的 README 提供精确输入输出约定和边界条件。RAG 的六级路径见 [RAG 分级练习](rag_practice/README.md)，可以独立学习，不要求先完成 LangGraph。只需修改练习文件；`practice_support.py` 是提供好的测试设施。
+各目录的 README 提供精确输入输出约定和边界条件。RAG 的基础六级和进阶分支见 [RAG 分级练习](rag_practice/README.md)。基础、混合检索和 GraphRAG 分支不要求先学 LangGraph；第 9 级需要工作流基础。只需修改练习文件；`practice_support.py` 是提供好的测试设施。
 
 ```bash
 python -m pytest --run-exercises tests/test_langchain_practice.py -q

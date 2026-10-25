@@ -1,10 +1,10 @@
 # RAG 分级练习
 
-每一级只增加一个主要能力：**文档 → 切分 → 检索 → 生成 → 组合 → 评估**。所有代码都是待完成的练习，不附完整答案。先完成当前级，再进入下一级；不要求先掌握数据库部署或真实模型服务。
+学习路径分为 **基础 RAG → Advanced RAG → 工作流编排 / GraphRAG**。基础六级每次增加一个主要能力，进阶按依赖选择分支；所有代码都是待完成的练习，不附完整答案，不要求先部署数据库或真实模型服务。
 
 ## 从哪里开始
 
-基础准备：Python 函数、字典、列表、Path 和类型标注。第 1–3 级无需 chat model；第 4 级开始需要 LangChain messages / Runnable，可先完成仓库的 LangChain 练习。整个基础路径不要求先学 LangGraph。
+基础准备：Python 函数、字典、列表、Path 和类型标注。第 1–3 级无需 chat model；第 4 级开始需要 LangChain messages / Runnable，可先完成仓库的 LangChain 练习。整个基础路径不要求先学 LangGraph。下表是基础六级；进阶路径见后面的独立分组。
 
 | 级别 | 本级要回答的问题 | 题目 | 代码 |
 | --- | --- | --- | --- |
@@ -45,6 +45,49 @@ python -m pytest --run-exercises tests/rag -q
 
 旧的 `ex01_index.py`、`ex02_qa.py` 保留为导入兼容入口。请修改相应的 `levelXX_*.py`，不要在旧文件重复实现。
 
-## 基础路径完成后的扩展
+## Advanced RAG：改进候选与上下文
 
-以下是可选项目方向，不是当前六级已提供的实现或测试：结构化文档切分与表格处理、真实 embedding 和 chat model、重排与混合检索、持久化与增量更新、LangGraph 工作流。每次只选一个方向，给出可观察的改进目标后再增加组件。
+先完成 Level 6，建立固定评估集后再加组件。新增机制不保证提升质量，应与基础检索在相同数据和预算下比较。
+
+| 级别 | 能力与前置 | 题目 | 代码 |
+| --- | --- | --- | --- |
+| 7 · 混合检索 | 两路召回、RRF 排名融合；前置 Level 3、6 | [任务说明](lessons/07_hybrid.md) | [level07_hybrid.py](level07_hybrid.py) |
+| 8 · 重排与预算 | 注入重排评分器、选择完整上下文块；前置 Level 3、6，可接 Level 7 | [任务说明](lessons/08_reranking.md) | [level08_reranking.py](level08_reranking.py) |
+
+## LangGraph RAG：管理执行流程
+
+| 级别 | 能力与前置 | 题目 | 代码 |
+| --- | --- | --- | --- |
+| 9 · 可纠正检索 | 评估证据、改写 query、有界重试与拒答；前置 Level 5、6 和 LangGraph 练习 | [任务说明](lessons/09_workflow.md) | [level09_workflow.py](level09_workflow.py) |
+
+本级的图节点是执行步骤，例如 retrieve、grade、rewrite。它不要求知识图谱；本题提供的是可纠正检索工作流，不把固定流程测试等同于自主 agent 能力。
+
+## GraphRAG：利用实体和关系检索
+
+| 级别 | 能力与前置 | 题目 | 代码 |
+| --- | --- | --- | --- |
+| 10 · 知识图谱 | 有向事实、来源、去重与规范化；前置文档和有向图基础 | [任务说明](lessons/10_knowledge_graph.md) | [level10_knowledge_graph.py](level10_knowledge_graph.py) |
+| 11 · 图证据检索 | 有界多跳路径、原文证据回溯、带关系的生成输入；前置 Level 10，建议 Level 4、6 | [任务说明](lessons/11_graph_retrieval.md) | [level11_graph_retrieval.py](level11_graph_retrieval.py) |
+
+这条分支不依赖 Level 9。这里图节点是实体，边是带来源的关系。使用独立的 [graph_data/](graph_data/) 样本，先隔离图建模和局部检索；人工事实不等于完成了自动实体抽取。
+
+本项目目前覆盖 GraphRAG 的局部图检索教学路径。微软完整 GraphRAG 还涉及社区层级、摘要和 global search；这些属于后续项目，不能把本练习当成完整复刻。[官方概览](https://microsoft.github.io/graphrag/)
+
+## 进阶如何验收
+
+每级仍有独立代码、契约和测试，可以只运行当前级：
+
+```bash
+python -m pytest --run-exercises tests/rag/test_level07_hybrid.py -q
+python -m pytest --run-exercises tests/rag/test_level09_workflow.py -q
+python -m pytest --run-exercises tests/rag/test_level10_knowledge_graph.py -q
+python -m pytest --run-exercises tests/rag/test_level11_graph_retrieval.py -q
+```
+
+离线测试使用固定 retriever、评分器、grader、rewriter 和 generator，验证排序、数据流、来源与终止条件。它们不证明真实模型具备语义重排、可靠的证据判断、实体抽取或事实推理能力。
+
+基础与进阶都不增加 API Key 要求，也没有引入 Neo4j、Elasticsearch 或额外模型下载。真实服务是替换依赖后的独立实验。
+
+## 后续项目方向
+
+尚未提供实现与验收的方向：多查询改写与融合、父子块检索、结构化文档与表格处理、实体抽取与别名合并、图与向量候选融合、社区摘要与全局检索、持久化与增量更新。每次选一个明确问题，记录改动前后的检索质量、证据完整性、调用次数与成本，不把组件数量当成能力等级。
