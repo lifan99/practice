@@ -6,7 +6,7 @@ import pytest
 from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph.state import CompiledStateGraph
 
-from langgraph_practice.level06_checkpoints import build_counter_graph, counter_snapshot
+from langgraph_practice.exercises.level06_checkpoints import build_counter_graph, counter_snapshot
 
 pytestmark = pytest.mark.exercise
 

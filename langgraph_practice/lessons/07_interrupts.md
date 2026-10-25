@@ -2,7 +2,7 @@
 
 **本级只解决：怎样在模拟动作之前停下来等待外部决定？**
 
-完成 [level07_interrupts.py](../level07_interrupts.py) 的 build_approval_graph(checkpointer, publish)。publish 是注入的纯本地模拟函数，不发送外部消息。
+完成 [level07_interrupts.py](../exercises/level07_interrupts.py) 的 build_approval_graph(checkpointer, publish)。publish 是注入的纯本地模拟函数，不发送外部消息。
 
 - 使用指定 checkpointer 编译图；输入 `{"draft": str}`。
 - prepare 去掉 draft 两端空白，空白时 ValueError；设置 status=pending、receipt=空串。

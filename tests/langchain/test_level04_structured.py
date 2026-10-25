@@ -3,8 +3,8 @@
 import pytest
 from langchain_core.runnables import RunnableLambda
 
-from langchain_practice.ex02_tools import StudyPlan
-from langchain_practice.level04_structured import generate_plan
+from langchain_practice.exercises.level02_tools import StudyPlan
+from langchain_practice.exercises.level04_structured import generate_plan
 
 pytestmark = pytest.mark.exercise
 

@@ -6,16 +6,16 @@
 
 | 级别 | 需要亲手实现的能力 | 任务 | 代码 |
 | --- | --- | --- | --- |
-| C1 | 文件读取与来源 | [契约](lessons/01_documents.md) | [代码](level01_documents.py) |
-| C2 | 重叠窗口、段落聚合、原文偏移 | [契约](lessons/02_chunking.md) | [代码](level02_chunking.py) |
-| C3 | 余弦相似度、精确 Top-k | [契约](lessons/03_vectors.md) | [代码](level03_vectors.py) |
-| C4 | 自有索引、embedding 快照、检索前过滤 | [契约](lessons/04_index.md) | [代码](level04_index.py) |
-| C5 | BM25 词法检索 | [契约](lessons/05_bm25.md) | [代码](level05_bm25.py) |
-| C6 | 上下文、普通函数问答、空结果拒答 | [契约](lessons/06_pipeline.md) | [代码](level06_pipeline.py) |
-| C7 | Recall、MRR、NDCG 与固定集评估 | [契约](lessons/07_metrics.md) | [代码](level07_metrics.py) |
-| C8 | chunk 级 RRF 与双路融合 | [契约](lessons/08_hybrid.md) | [代码](level08_hybrid.py) |
-| C9 | 重排、完整上下文 token 预算 | [契约](lessons/09_context.md) | [代码](level09_context.py) |
-| C10 | 有界多查询扩展与排名融合 | [契约](lessons/10_multiquery.md) | [代码](level10_multiquery.py) |
+| C1 | 文件读取与来源 | [契约](lessons/01_documents.md) | [代码](exercises/level01_documents.py) |
+| C2 | 重叠窗口、段落聚合、原文偏移 | [契约](lessons/02_chunking.md) | [代码](exercises/level02_chunking.py) |
+| C3 | 余弦相似度、精确 Top-k | [契约](lessons/03_vectors.md) | [代码](exercises/level03_vectors.py) |
+| C4 | 自有索引、embedding 快照、检索前过滤 | [契约](lessons/04_index.md) | [代码](exercises/level04_index.py) |
+| C5 | BM25 词法检索 | [契约](lessons/05_bm25.md) | [代码](exercises/level05_bm25.py) |
+| C6 | 上下文、普通函数问答、空结果拒答 | [契约](lessons/06_pipeline.md) | [代码](exercises/level06_pipeline.py) |
+| C7 | Recall、MRR、NDCG 与固定集评估 | [契约](lessons/07_metrics.md) | [代码](exercises/level07_metrics.py) |
+| C8 | chunk 级 RRF 与双路融合 | [契约](lessons/08_hybrid.md) | [代码](exercises/level08_hybrid.py) |
+| C9 | 重排、完整上下文 token 预算 | [契约](lessons/09_context.md) | [代码](exercises/level09_context.py) |
+| C10 | 有界多查询扩展与排名融合 | [契约](lessons/10_multiquery.md) | [代码](exercises/level10_multiquery.py) |
 
 C1→C2→C4，C3→C4；C5 与 C4 可并行学习；C6 接任意 retriever；C7 建立评估基线后再做 C8–C10。测试使用独立输入，可单独验收每一级；组合题通过注入替代组件隔离尚未完成的前级。提供好的 [types.py](types.py) 只定义数据契约。
 
@@ -27,11 +27,11 @@ C1→C2→C4，C3→C4；C5 与 C4 可并行学习；C6 接任意 retriever；C7
 python3 -m venv .venv-core
 source .venv-core/bin/activate
 python -m pip install -r requirements-rag-core.txt
-python -m pytest --run-exercises tests/rag/core/test_core01_documents.py -q
+python -m pytest --run-exercises tests/rag/core/test_level01_documents.py -q
 python -m pytest --run-exercises tests/rag/core -q
 ```
 
-仓库原有 .venv 也可用；无需重复安装。没有 --run-exercises 时练习跳过；初始 TODO 失败是预期现象。仅安装最小依赖时，请只运行 tests/rag/core；其他主题和适配层需要总锁文件。NumPy 是可选实现工具，不是测试依赖。若创建 .venv-core，它受根目录 .gitignore 的 .venv* 规则保护。
+完整 .venv 也可用；无需重复安装。没有 --run-exercises 时练习跳过；初始 TODO 失败是预期现象。仅安装最小依赖时，请只运行 tests/rag/core；其他主题和适配层需要总锁文件。NumPy 是可选实现工具，不是测试依赖。若创建 .venv-core，它受根目录 .gitignore 的 .venv* 规则保护。
 
 ## 共同契约与完成标准
 
@@ -41,4 +41,4 @@ python -m pytest --run-exercises tests/rag/core -q
 - 每级需提交实现、测试结果，以及任务末尾要求的解释或实验记录。算法题另说明时间／空间复杂度；不以测试数量或组件数量代表模型质量。
 - 允许调用模型或现成中文分词器，不要求重写 Transformer、embedding 训练或 cross-encoder。HNSW/IVF 属于完成精确检索后的选修。
 
-最后完成[综合对比实验](experiments/README.md)，再进入 [LangChain 适配层](../adapters/README.md)。[原有 RAG 入口](../README.md)列出旧练习和 GraphRAG／LangGraph 扩展的对应关系。
+最后完成[综合对比实验](experiments/README.md)，再进入 [LangChain 适配层](../langchain/README.md)。[RAG 总路径](../README.md)列出各分支和前置依赖。

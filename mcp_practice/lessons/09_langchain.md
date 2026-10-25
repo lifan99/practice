@@ -2,7 +2,7 @@
 
 **本级只解决：怎样把已连接 MCP client 的工具交给应用层？**
 
-前置：LangChain 的 StructuredTool、异步工具与 ToolMessage。完成 [level09_langchain.py](../level09_langchain.py) 的 make_langchain_tools(client, tools)。
+前置：LangChain 的 StructuredTool、异步工具与 ToolMessage。完成 [level09_langchain.py](../exercises/level09_langchain.py) 的 make_langchain_tools(client, tools)。
 
 - 按输入顺序返回 StructuredTool；名字保留原值，重复名字抛 ValueError。测试工具名适合 LangChain，不要求实现通用名字转义。
 - description 保留原值，缺省时使用 `MCP tool {name}.`；args_schema 使用对应 input_schema，保留 required 和属性类型。

@@ -2,7 +2,7 @@
 
 **本级只解决：怎样增量传递模型输出，并在提前停止时释放流？**
 
-前置：迭代器、生成器、Level 9。完成 [level10_streaming.py](../level10_streaming.py) 的两个函数。
+前置：迭代器、生成器、Level 9。完成 [level10_streaming.py](../exercises/level10_streaming.py) 的两个函数。
 
 - `stream_text(model, messages)` 返回同步迭代器，实际使用 model.stream。
 - `astream_text(model, messages)` 返回异步迭代器，实际使用 model.astream；调用者直接 `async for`，不先 await 此函数的返回值。可以改为带 yield 的 async def，或返回内部异步生成器。

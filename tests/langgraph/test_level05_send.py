@@ -6,7 +6,7 @@ from copy import deepcopy
 import pytest
 from langgraph.graph.state import CompiledStateGraph
 
-from langgraph_practice.level05_send import build_map_graph
+from langgraph_practice.exercises.level05_send import build_map_graph
 
 pytestmark = pytest.mark.exercise
 

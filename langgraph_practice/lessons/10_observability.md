@@ -2,7 +2,7 @@
 
 **本级只解决：怎样观察图执行，并区分完成、暂停和失败？**
 
-完成 [level10_observability.py](../level10_observability.py)。两函数都是执行入口，不能为了观察同一次真实动作而连续执行两次；本级回调均为纯本地测试。
+完成 [level10_observability.py](../exercises/level10_observability.py)。两函数都是执行入口，不能为了观察同一次真实动作而连续执行两次；本级回调均为纯本地测试。
 
 ## A：v2 更新封装
 

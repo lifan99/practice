@@ -2,7 +2,7 @@
 
 **本级只解决：节点的部分状态更新应如何合并？**
 
-完成 [level03_state.py](../level03_state.py)。
+完成 [level03_state.py](../exercises/level03_state.py)。
 
 ## A：消息更新
 

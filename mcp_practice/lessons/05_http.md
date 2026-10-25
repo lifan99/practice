@@ -2,7 +2,7 @@
 
 **本级只解决：怎样把同一个 MCP server 暴露为 HTTP 应用？**
 
-完成 [level05_http.py](../level05_http.py) 的 build_http_app(server)，返回 SDK 构建的 Starlette app。
+完成 [level05_http.py](../exercises/level05_http.py) 的 build_http_app(server)，返回 SDK 构建的 Starlette app。
 
 - 实际使用 streamable_http_app，路径 `/mcp`、json_response=True、stateless_http=True。
 - 不手写 HTTP JSON-RPC 分发，不启动监听端口，不在请求间缓存自建 Client 对象。

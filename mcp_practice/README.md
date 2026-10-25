@@ -12,21 +12,21 @@ MCP 定义应用与服务之间的能力和通信协议，本身不替你选择�
 
 | 级别 | 核心能力 | 任务 | 代码 |
 | --- | --- | --- | --- |
-| 1 · 协议对象 | 工具描述、文本块、结构化结果与错误标识 | [说明](lessons/01_protocol.md) | [level01_protocol.py](level01_protocol.py) |
-| 2 · Tools server | 工具注册、类型 schema、成功与业务失败 | [说明](lessons/02_tools.md) | [level02_tools.py](level02_tools.py) |
-| 3 · 上下文能力 | 静态资源、URI 模板、prompts | [说明](lessons/03_context.md) | [level03_context.py](level03_context.py) |
-| 4 · stdio client | 本地子进程、能力发现、调用和释放 | [说明](lessons/04_stdio.md) | [level04_stdio.py](level04_stdio.py) |
-| 5 · Streamable HTTP | ASGI endpoint、SDK lifespan、真实协议往返 | [说明](lessons/05_http.md) | [level05_http.py](level05_http.py) |
+| 1 · 协议对象 | 工具描述、文本块、结构化结果与错误标识 | [说明](lessons/01_protocol.md) | [level01_protocol.py](exercises/level01_protocol.py) |
+| 2 · Tools server | 工具注册、类型 schema、成功与业务失败 | [说明](lessons/02_tools.md) | [level02_tools.py](exercises/level02_tools.py) |
+| 3 · 上下文能力 | 静态资源、URI 模板、prompts | [说明](lessons/03_context.md) | [level03_context.py](exercises/level03_context.py) |
+| 4 · stdio client | 本地子进程、能力发现、调用和释放 | [说明](lessons/04_stdio.md) | [level04_stdio.py](exercises/level04_stdio.py) |
+| 5 · Streamable HTTP | ASGI endpoint、SDK lifespan、真实协议往返 | [说明](lessons/05_http.md) | [level05_http.py](exercises/level05_http.py) |
 
 ## 进阶路径
 
 | 级别 | 核心能力 | 任务 | 代码 |
 | --- | --- | --- | --- |
-| 6 · 分页发现 | 不透明 cursor、去重、循环检测与页数上限 | [说明](lessons/06_pagination.md) | [level06_pagination.py](level06_pagination.py) |
-| 7 · 执行控制 | 并发上限、每项超时、取消、服务端进度 | [说明](lessons/07_execution.md) | [level07_execution.py](level07_execution.py) |
-| 8 · 文件资源边界 | 路径解析、符号链接、受限 Markdown 读取 | [说明](lessons/08_files.md) | [level08_files.py](level08_files.py) |
-| 9 · LangChain 适配 | 异步 StructuredTool、schema 与原始结果 artifact | [说明](lessons/09_langchain.md) | [level09_langchain.py](level09_langchain.py) |
-| 10 · 多服务组合 | 连接作用域、部分失败回收、工具命名空间 | [说明](lessons/10_multiserver.md) | [level10_multiserver.py](level10_multiserver.py) |
+| 6 · 分页发现 | 不透明 cursor、去重、循环检测与页数上限 | [说明](lessons/06_pagination.md) | [level06_pagination.py](exercises/level06_pagination.py) |
+| 7 · 执行控制 | 并发上限、每项超时、取消、服务端进度 | [说明](lessons/07_execution.md) | [level07_execution.py](exercises/level07_execution.py) |
+| 8 · 文件资源边界 | 路径解析、符号链接、受限 Markdown 读取 | [说明](lessons/08_files.md) | [level08_files.py](exercises/level08_files.py) |
+| 9 · LangChain 适配 | 异步 StructuredTool、schema 与原始结果 artifact | [说明](lessons/09_langchain.md) | [level09_langchain.py](exercises/level09_langchain.py) |
+| 10 · 多服务组合 | 连接作用域、部分失败回收、工具命名空间 | [说明](lessons/10_multiserver.md) | [level10_multiserver.py](exercises/level10_multiserver.py) |
 
 前置：Python 类型标注、字典、异常、async/await 与异步上下文管理器。建议基础级依次完成；第 6–8 级可在理解 Client 后独立练习。第 9 级建议先学 LangChain 的工具与 ToolMessage，不要求先实现完整 agent。第 10 级再组合连接、发现和适配。
 
@@ -36,7 +36,7 @@ MCP 定义应用与服务之间的能力和通信协议，本身不替你选择�
 
 ```bash
 python -m pip install -r requirements-lock.txt
-python -m pytest tests/test_mcp_environment.py -q
+python -m pytest tests/environment/test_mcp.py -q
 python -m pytest --run-exercises tests/mcp/test_level01_protocol.py -q
 python -m pytest --run-exercises tests/mcp/test_level04_stdio.py -q
 python -m pytest --run-exercises tests/mcp -q
@@ -57,7 +57,7 @@ python -m mcp_practice.run_server --transport http --port 8000
 
 stdio 命令供其他 MCP 客户端启动，不应在它的 stdout 打印调试内容。HTTP 命令只监听 127.0.0.1；练习不会自动部署或注册到任何桌面宿主。
 
-[reference_server.py](reference_server.py) 是提供好的 echo/health 传输测试设施，独立于练习答案；[test_support.py](test_support.py) 使用 httpx2.ASGITransport，不开放 socket。第 4 级则会由 SDK 启动并关闭本项目的 reference_server 子进程。
+[reference_server.py](support/reference_server.py) 是提供好的 echo/health 传输测试设施，独立于练习答案；[transports.py](support/transports.py) 使用 httpx2.ASGITransport，不开放 socket。第 4 级则会由 SDK 启动并关闭本项目的 reference_server 子进程。
 
 ## 后续项目
 

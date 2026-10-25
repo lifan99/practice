@@ -2,7 +2,7 @@
 
 **本级只解决：怎样同时执行多个独立节点，再生成完整结果？**
 
-完成 [level04_parallel.py](../level04_parallel.py) 的 build_parallel_review(reviewers)。reviewers 为名字到 `(text)->feedback` 回调的映射，不能为空；名字需匹配 `[a-z][a-z0-9_]*`，无效时构图即抛 ValueError。
+完成 [level04_parallel.py](../exercises/level04_parallel.py) 的 build_parallel_review(reviewers)。reviewers 为名字到 `(text)->feedback` 回调的映射，不能为空；名字需匹配 `[a-z][a-z0-9_]*`，无效时构图即抛 ValueError。
 
 - 输入 `{"text": str}`，prepare 去掉两端空白，空白时 ValueError，不调用任何 reviewer。
 - 为每个名字建立独立节点，分别调用对应回调一次，传相同的规范化文本；各节点在同一并行阶段运行。

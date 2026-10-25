@@ -5,7 +5,7 @@ from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph.state import CompiledStateGraph
 from langgraph.types import Command
 
-from langgraph_practice.level07_interrupts import build_approval_graph
+from langgraph_practice.exercises.level07_interrupts import build_approval_graph
 
 pytestmark = pytest.mark.exercise
 

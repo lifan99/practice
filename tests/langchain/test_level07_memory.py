@@ -4,8 +4,8 @@ import pytest
 from langchain_core.messages import AIMessage, HumanMessage
 from langgraph.checkpoint.memory import InMemorySaver
 
-from langchain_practice.level07_memory import build_memory_agent, chat
-from langchain_practice.offline_models import ScriptedChatModel
+from langchain_practice.exercises.level07_memory import build_memory_agent, chat
+from langchain_practice.support.offline_models import ScriptedChatModel
 
 pytestmark = pytest.mark.exercise
 

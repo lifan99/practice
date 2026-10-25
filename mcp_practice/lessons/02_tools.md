@@ -2,7 +2,7 @@
 
 **本级只解决：怎样把带类型的 Python 函数注册为 MCP 工具？**
 
-完成 [level02_tools.py](../level02_tools.py) 的 build_calculator_server，返回官方 `mcp.server.MCPServer`，注册两个有非空英文说明的工具：
+完成 [level02_tools.py](../exercises/level02_tools.py) 的 build_calculator_server，返回官方 `mcp.server.MCPServer`，注册两个有非空英文说明的工具：
 
 - add(a: int, b: int) -> int：返回 a+b。
 - divide(a: float, b: float) -> float：返回 a/b；b 为 0 时抛 SDK 的 ToolError，消息包含 `nonzero`。

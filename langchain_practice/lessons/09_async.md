@@ -2,7 +2,7 @@
 
 **本级只解决：怎样同时处理多个输入，并保留顺序和单项失败？**
 
-前置：async/await、异常与 Runnable。完成 [level09_async.py](../level09_async.py) 的 `run_bounded_batch(runnable, inputs, max_concurrency=3)`。
+前置：async/await、异常与 Runnable。完成 [level09_async.py](../exercises/level09_async.py) 的 `run_bounded_batch(runnable, inputs, max_concurrency=3)`。
 
 - 实际使用 Runnable 的异步批处理接口，传递 max_concurrency，不使用同步 invoke 或阻塞事件循环的等待。
 - max_concurrency 是正整数，否则抛 `ValueError`；空输入也先校验参数。有效空输入返回 `[]`。

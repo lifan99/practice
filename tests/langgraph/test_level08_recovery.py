@@ -3,7 +3,7 @@
 import pytest
 from langgraph.checkpoint.memory import InMemorySaver
 
-from langgraph_practice.level08_recovery import build_recoverable_graph
+from langgraph_practice.exercises.level08_recovery import build_recoverable_graph
 
 pytestmark = pytest.mark.exercise
 

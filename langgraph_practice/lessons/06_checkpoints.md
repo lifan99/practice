@@ -2,7 +2,7 @@
 
 **本级只解决：怎样跨多次图调用保留同一线程的状态？**
 
-完成 [level06_checkpoints.py](../level06_checkpoints.py)。
+完成 [level06_checkpoints.py](../exercises/level06_checkpoints.py)。
 
 - build_counter_graph(checkpointer) 使用传入的 checkpointer 编译 StateGraph；不创建替代 checkpointer 或全局计数器。
 - 输入只含 delta 整数。accumulate 节点将其加到当前 total，首次 total 从 0 开始；0 和负 delta 合法。

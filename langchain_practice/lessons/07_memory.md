@@ -2,7 +2,7 @@
 
 **本级只解决：怎样保留同一会话的历史，同时隔离其他会话？**
 
-前置：Level 6。完成 [level07_memory.py](../level07_memory.py) 的两个函数。
+前置：Level 6。完成 [level07_memory.py](../exercises/level07_memory.py) 的两个函数。
 
 ## A：带 checkpointer 的 agent
 

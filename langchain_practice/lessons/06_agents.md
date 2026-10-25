@@ -2,7 +2,7 @@
 
 **本级只解决：怎样让框架接管模型和工具之间的循环？**
 
-前置：Level 5。完成 [level06_agents.py](../level06_agents.py) 的 `build_tool_agent(model, tools, middleware=None)`。
+前置：Level 5。完成 [level06_agents.py](../exercises/level06_agents.py) 的 `build_tool_agent(model, tools, middleware=None)`。
 
 - 实际使用 `langchain.agents.create_agent`，返回 CompiledStateGraph；不手写循环模拟 agent。
 - 使用传入的模型和工具，重复工具名在构建时抛 `ValueError`；空工具列表合法。
@@ -11,7 +11,7 @@
 - 图接收 `{"messages": [HumanMessage(...)]}`，结果包含完整 messages。多次工具调用的请求、结果及最终 AIMessage 应由框架按协议连接。
 - 调用者可通过 `config={"recursion_limit": ...}` 限制图执行；不吞掉框架的终止错误。
 
-测试提供 [offline_models.py](../offline_models.py) 的 ScriptedChatModel。它返回预设 AIMessage，并支持 bind_tools，但不执行工具，也不具备选择工具的智能。测试会让原生 agent 实际执行加法、乘法等本地工具。
+测试提供 [offline_models.py](../support/offline_models.py) 的 ScriptedChatModel。它返回预设 AIMessage，并支持 bind_tools，但不执行工具，也不具备选择工具的智能。测试会让原生 agent 实际执行加法、乘法等本地工具。
 
 ```bash
 python -m pytest --run-exercises tests/langchain/test_level06_agents.py -q

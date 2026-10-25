@@ -7,8 +7,8 @@ from langgraph.checkpoint.memory import InMemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.types import interrupt
 
-from langgraph_practice.level10_observability import collect_updates, observe_run
-from langgraph_practice.runtime_fixtures import create_probe_graph
+from langgraph_practice.exercises.level10_observability import collect_updates, observe_run
+from langgraph_practice.support.runtime_fixtures import create_probe_graph
 
 pytestmark = pytest.mark.exercise
 

@@ -2,7 +2,7 @@
 
 **本级只解决：父子工作流的字段不同，怎样保持边界并复用逻辑？**
 
-完成 [level09_subgraphs.py](../level09_subgraphs.py)。
+完成 [level09_subgraphs.py](../exercises/level09_subgraphs.py)。
 
 ## A：文本子图
 

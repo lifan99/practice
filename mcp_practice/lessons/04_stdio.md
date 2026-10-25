@@ -2,7 +2,7 @@
 
 **本级只解决：怎样启动、使用并关闭一个本地 MCP server 子进程？**
 
-完成 [level04_stdio.py](../level04_stdio.py) 的异步函数 inspect_stdio(server)。server 是 StdioServerParameters，测试指向提供的 [reference_server.py](../reference_server.py)，不依赖 Level 2 的实现。
+完成 [level04_stdio.py](../exercises/level04_stdio.py) 的异步函数 inspect_stdio(server)。server 是 StdioServerParameters，测试指向提供的 [reference_server.py](../support/reference_server.py)，不依赖 Level 2 的实现。
 
 - 使用 SDK v2 的 Client 与异步上下文；不手写进程管理或 JSON-RPC。
 - 发现工具，按 name 排序；调用 echo，arguments=`{"message":"hello"}`；读取 `health://ready`。

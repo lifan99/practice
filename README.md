@@ -1,14 +1,28 @@
-# LangChain / LangGraph / RAG / MCP 练习
+# AI 应用开发分级练习
 
 [![Practice environment](https://github.com/lifan99/practice/actions/workflows/ci.yml/badge.svg)](https://github.com/lifan99/practice/actions/workflows/ci.yml)
 
-适合会使用 Python 函数、类型标注、字典和虚拟环境的学习者。说明用中文，代码用英文。这里是独立练习：函数签名和测试已经准备好，核心实现以 `NotImplementedError` 标记，没有附答案。
+LangChain、LangGraph、RAG 与 MCP 的独立编程练习。中文任务说明，英文代码与类型标注；提供函数骨架和公开测试，核心实现保留 TODO，不附完整答案。前置为 Python 函数、列表、字典、异常与虚拟环境，异步章节另需 async/await。
 
-LangChain 练习组件组合，LangGraph 练习有状态工作流，RAG 练习用外部文档支持回答。RAG 是一种架构，不是与前两者并列的 Python 库；本项目先用 Python 手写检索核心，再通过适配层接入 LangChain。MCP 则练习应用与工具、资源服务之间的标准协议。
+## 目录怎么找
 
-## 安装与检查
+| 路径 | 内容 | 学习入口 |
+| --- | --- | --- |
+| langchain_practice/ | 十级组件组合、工具、agent、记忆、可靠性、异步与流 | [LangChain](langchain_practice/README.md) |
+| langgraph_practice/ | 十级状态、分支、并行、checkpoint、中断与恢复 | [LangGraph](langgraph_practice/README.md) |
+| rag_practice/core/ | 十级手写 RAG：切分、余弦、索引、BM25、评估与融合 | [RAG 手写核心](rag_practice/core/README.md) |
+| rag_practice/langchain/ | 九级框架集成：Document、向量存储、Runnable 与桥接 | [RAG 的 LangChain 集成](rag_practice/langchain/README.md) |
+| rag_practice/workflows/ | LangGraph 纠正检索工作流 | [RAG 工作流](rag_practice/workflows/README.md) |
+| rag_practice/graph/ | 事实图建模、多跳路径、来源证据 | [GraphRAG](rag_practice/graph/README.md) |
+| mcp_practice/ | 十级协议、server/client、传输、并发与多服务 | [MCP](mcp_practice/README.md) |
+| tests/ | 按主题对应的练习验收；environment/ 为环境检查 | [测试说明](tests/README.md) |
+| support/ | 跨主题使用的离线测试设施 | [离线模型与向量](support/offline.py) |
 
-使用 Python 3.12。克隆仓库并安装已验证的依赖：
+主题目录统一约定：**lessons/ 读题，exercises/ 写代码，support/ 使用提供好的测试设施，data/ 放样本**。每条路径的 README 只负责导航、依赖与运行入口。RAG 先手写核心，再选择框架集成、工作流或知识图谱；不要求先学 LangChain 才能开始 RAG。
+
+## 安装与运行
+
+完整环境使用 Python 3.12，在仓库根目录执行：
 
 ```bash
 git clone https://github.com/lifan99/practice.git
@@ -19,59 +33,36 @@ python -m pip install -r requirements-lock.txt
 python -m pytest -q
 ```
 
-Windows PowerShell 中，创建虚拟环境使用 `py -3.12 -m venv .venv`，激活使用 `.venv\Scripts\Activate.ps1`，其余 Python 命令相同。
+PowerShell 使用 py -3.12 -m venv .venv 创建环境，使用 .venv\Scripts\Activate.ps1 激活。锁文件在 Python 3.12 / Linux 验证；requirements.txt 提供依赖范围，升级后需重新验证。
 
-依赖安装需要联网；安装完成后，所有基础练习与测试均可离线运行，不需要 API Key；MCP 的 stdio 验收会启动本项目提供的本地测试子进程，HTTP 测试不开放端口。`requirements-lock.txt` 锁定本次在 Python 3.12 / Linux 下验证的依赖版本；`requirements.txt` 提供允许升级的兼容版本范围，升级后应重新验证。
-
-默认测试只检查运行环境，练习测试全部跳过。初始结果应为 **8 项环境检查通过，练习测试全部 skipped**；这不代表练习已经完成。GitHub Actions 的绿色状态同样只表示环境检查和 Python 语法检查通过。
-
-## 学习入口
-
-| 主题 | 当前练习范围 | 入口 |
-| --- | --- | --- |
-| LangChain | 10 级：基础组件、并行与路由、结构化输出、多工具 agent、记忆、可靠性、异步、流式输出 | [LangChain 分级练习](langchain_practice/README.md) |
-| LangGraph | 10 级：状态合并、并行与 Send、checkpoint、人工中断、失败恢复、子图、流式观测 | [LangGraph 分级练习](langgraph_practice/README.md) |
-| RAG | 手写主线10级：余弦、索引、BM25、评估、混合检索；后接框架适配和图扩展 | [RAG 分级练习](rag_practice/README.md) |
-| MCP | 10 级：基础协议与 server/client、stdio、HTTP、分页、并发、文件边界、LangChain 适配、多服务组合 | [MCP 分级练习](mcp_practice/README.md) |
-
-各主题的 README 提供每级前置知识、输入输出约定、独立测试命令与完成标准。RAG 手写主线无需先学 LangChain；框架适配阶段再接模型与 Runnable，工作流扩展需要 LangGraph。先选一条路径，逐级完成即可。
-
-原有 LangChain、LangGraph 基础文件和测试入口保持可用。只需修改对应练习文件；practice_support.py、LangChain 的 offline_models.py，以及 MCP 的 reference_server.py / test_support.py 是提供好的测试设施。
+依赖安装后练习可离线运行，无需 API Key。默认测试应为 **8 passed、练习全部 skipped**；CI 绿色表示环境和语法检查通过，不代表学生任务已完成。开启练习验收：
 
 ```bash
-python -m pytest --run-exercises tests/test_langchain_practice.py -q
+python -m pytest --run-exercises tests/langchain/test_level01_chain.py -q
 python -m pytest --run-exercises tests/langchain -q
-python -m pytest --run-exercises tests/test_langgraph_practice.py -q
 python -m pytest --run-exercises tests/langgraph -q
-python -m pytest --run-exercises tests/rag/core/test_core01_documents.py -q
 python -m pytest --run-exercises tests/rag/core -q
-python -m pytest --run-exercises tests/rag/adapters -q
-python -m pytest --run-exercises tests/rag -q
+python -m pytest --run-exercises tests/rag/langchain -q
+python -m pytest --run-exercises tests/rag/workflows -q
+python -m pytest --run-exercises tests/rag/graph -q
 python -m pytest --run-exercises tests/mcp -q
-python -m pytest --run-exercises -q
 ```
 
-**加上 `--run-exercises` 后，尚未完成的练习测试会失败，这是预期现象。** 看到 `NotImplementedError` 表示还未完成该函数，不是环境损坏。先跑环境检查，再按顺序使对应测试通过。公开测试只覆盖部分行为；完成后请对照契约自行检查边界情况。
+TODO 导致的 NotImplementedError 是尚未完成的任务。公开测试通过后，还应能解释数据流、失败路径和工程取舍；具体完成标准见每级任务，不用硬编码示例结果。
 
-可以通过 `-k` 聚焦单个任务，例如 `python -m pytest --run-exercises tests/test_langchain_practice.py -k test_chain -q`。
+仅学手写 RAG 可在独立环境安装 [requirements-rag-core.txt](requirements-rag-core.txt)，只运行 tests/rag/core；核心代码使用标准库，可选 NumPy。其他主题需完整依赖。
 
-RAG 手写主线可仅安装 [requirements-rag-core.txt](requirements-rag-core.txt)，只运行 tests/rag/core；完整环境的安装方式不变。
+## 测试与真实效果
 
-每个主题另有简短思考题。完成标准是：对应公开测试通过，能解释自己的数据流与失败路径。无需为了通过测试硬编码示例结果。
+support/offline.py 的词频向量、FakeListChatModel 和各主题 support/ 是提供好的受控设施。它们验证流程，不证明真实语义检索、规划、回答正确性或防提示注入效果。MCP stdio 使用本地测试子进程；HTTP 验收使用进程内 ASGI，不开放端口。
 
-## 模拟与真实模型的区别
-
-`FakeListChatModel` 返回预设文本，不会理解提示词；提供的词频 embedding 只用于检验向量检索流程，不能代表真实语义检索质量。问答测试检查上下文和来源传递，不证明回答事实正确，也不证明模型一定遵守拒答或防注入指令。
-
-可选拓展：基础练习完成后，换用真实 chat model 与 embedding model，对有答案、无答案、歧义问题分别评估。自行选择 provider 并安装对应集成包，通过环境变量提供凭据；不要将密钥写入代码。真实调用可能收费，不属于默认测试流程。
+完成基础后可通过注入接口接真实 embedding、chat model 和 reranker，再用固定问题集比较质量、延迟与费用。记录有答案、无答案和歧义样本；凭据通过环境变量提供，真实调用可能收费。RAG 的[综合实验](rag_practice/core/experiments/README.md)给出记录要求。
 
 ## 官方参考
 
-接口文档核对日期：2026-10-25。依赖版本仍以本项目锁文件为准。
+接口核对日期：2026-10-25；运行版本以锁文件为准。
 
-- [LangChain 模型接口](https://docs.langchain.com/oss/python/langchain/models)
+- [LangChain 模型](https://docs.langchain.com/oss/python/langchain/models)
 - [LangGraph Graph API](https://docs.langchain.com/oss/python/langgraph/graph-api)
-- [LangChain 检索与 RAG](https://docs.langchain.com/oss/python/deepagents/retrieval)
-- [LangChain Core API](https://reference.langchain.com/python/langchain-core/)
-
-- [MCP Python SDK v2](https://py.sdk.modelcontextprotocol.io/)
+- [LangChain 检索](https://docs.langchain.com/oss/python/deepagents/retrieval)
+- [MCP Python SDK](https://py.sdk.modelcontextprotocol.io/)

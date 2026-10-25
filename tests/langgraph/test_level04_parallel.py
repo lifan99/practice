@@ -6,7 +6,7 @@ from threading import Barrier
 import pytest
 from langgraph.graph.state import CompiledStateGraph
 
-from langgraph_practice.level04_parallel import build_parallel_review
+from langgraph_practice.exercises.level04_parallel import build_parallel_review
 
 pytestmark = pytest.mark.exercise
 

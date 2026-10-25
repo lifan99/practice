@@ -5,9 +5,9 @@ import asyncio
 import pytest
 from starlette.applications import Starlette
 
-from mcp_practice.level05_http import build_http_app
-from mcp_practice.reference_server import create_reference_server
-from mcp_practice.test_support import client_for_app
+from mcp_practice.exercises.level05_http import build_http_app
+from mcp_practice.support.reference_server import create_reference_server
+from mcp_practice.support.transports import client_for_app
 
 pytestmark = pytest.mark.exercise
 

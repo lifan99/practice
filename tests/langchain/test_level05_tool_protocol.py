@@ -6,7 +6,7 @@ import pytest
 from langchain_core.messages import AIMessage, ToolMessage
 from langchain_core.tools import tool
 
-from langchain_practice.level05_tool_protocol import execute_tool_calls
+from langchain_practice.exercises.level05_tool_protocol import execute_tool_calls
 
 pytestmark = pytest.mark.exercise
 

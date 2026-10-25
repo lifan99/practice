@@ -5,7 +5,7 @@ import asyncio
 import pytest
 from mcp_types import Tool
 
-from mcp_practice import level10_multiserver as multi
+from mcp_practice.exercises import level10_multiserver as multi
 
 pytestmark = pytest.mark.exercise
 

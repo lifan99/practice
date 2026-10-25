@@ -2,7 +2,7 @@
 
 **本级只解决：多个或较慢的工具调用，怎样保持有界和可观察？**
 
-完成 [level07_execution.py](../level07_execution.py)。
+完成 [level07_execution.py](../exercises/level07_execution.py)。
 
 ## A：客户端执行约束
 

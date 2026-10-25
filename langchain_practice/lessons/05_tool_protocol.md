@@ -2,7 +2,7 @@
 
 **本级只解决：模型发出的 tool calls 怎样对应到工具结果？**
 
-前置：Level 2、AIMessage 与 ToolMessage。完成 [level05_tool_protocol.py](../level05_tool_protocol.py) 的 `execute_tool_calls(message, tools)`；只处理一批已给定的调用，不实现 agent 决策循环。
+前置：Level 2、AIMessage 与 ToolMessage。完成 [level05_tool_protocol.py](../exercises/level05_tool_protocol.py) 的 `execute_tool_calls(message, tools)`；只处理一批已给定的调用，不实现 agent 决策循环。
 
 - tools 是 BaseTool 列表，工具名不能重复，否则抛 `ValueError`。
 - 在执行任何工具前，检查本批所有调用的 ID 非空且不重复，否则抛 `ValueError`；工具名都必须存在，否则抛 `KeyError(工具名)`。

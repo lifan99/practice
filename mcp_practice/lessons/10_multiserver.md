@@ -2,7 +2,7 @@
 
 **本级只解决：多个 server 同时接入时，怎样避免资源泄漏和同名混淆？**
 
-完成 [level10_multiserver.py](../level10_multiserver.py)。
+完成 [level10_multiserver.py](../exercises/level10_multiserver.py)。
 
 ## A：作用域内连接
 

@@ -1,6 +1,6 @@
 # C4：自有索引与检索前过滤
 
-目标：实现 [build_index / search_index](../level04_index.py)，使用 [VectorIndex](../types.py)。不使用框架向量存储。
+目标：实现 [build_index / search_index](../exercises/level04_index.py)，使用 [VectorIndex](../types.py)。不使用框架向量存储。
 
 ## A：建库
 
@@ -18,7 +18,7 @@ allowed_sources=None 表示全部；set 表示仅候选来源在其中的块，�
 返回 SearchHit，按分数降序、同分按原索引顺序；最多k，不按 source 去重。负分和零分仍可返回，没有默认相似度阈值。过滤是检索策略练习，不等于完整用户认证／授权系统。
 
 ```bash
-python -m pytest --run-exercises tests/rag/core/test_core04_index.py -q
+python -m pytest --run-exercises tests/rag/core/test_level04_index.py -q
 ```
 
 完成后展示一个“先 Top-k 再过滤”会丢失合法候选的例子。说明 embedding 模型变化后旧向量是否仍可比较，以及索引应记录哪些模型版本信息。

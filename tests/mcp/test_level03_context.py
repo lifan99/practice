@@ -6,7 +6,7 @@ import pytest
 from mcp import Client
 from mcp.shared.exceptions import MCPError
 
-from mcp_practice.level03_context import build_notes_server
+from mcp_practice.exercises.level03_context import build_notes_server
 
 pytestmark = pytest.mark.exercise
 

@@ -2,7 +2,7 @@
 
 **本级只解决：怎样把单条链组织成多个分支？**
 
-前置：Level 1。完成 [level03_composition.py](../level03_composition.py) 的两个函数。
+前置：Level 1。完成 [level03_composition.py](../exercises/level03_composition.py) 的两个函数。
 
 ## A：两路分析
 

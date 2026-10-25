@@ -4,7 +4,7 @@ from pathlib import Path
 
 import pytest
 
-from mcp_practice import level08_files as files
+from mcp_practice.exercises import level08_files as files
 
 pytestmark = pytest.mark.exercise
 

@@ -2,7 +2,7 @@
 
 **本级只解决：工具清单不止一页时，怎样完整读取并保证终止？**
 
-完成 [level06_pagination.py](../level06_pagination.py) 的 list_all_tools(client, max_pages=20)。
+完成 [level06_pagination.py](../exercises/level06_pagination.py) 的 list_all_tools(client, max_pages=20)。
 
 - max_pages 是正整数，否则在调用客户端前抛 ValueError；它包含第一页。
 - 首次 cursor 为 None，后续原样回传 next_cursor，不解析或修改它。

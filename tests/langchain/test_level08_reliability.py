@@ -7,7 +7,7 @@ from langchain.agents.middleware import AgentMiddleware
 from langchain_core.messages import ToolMessage
 from langchain_core.runnables import RunnableLambda
 
-from langchain_practice.level08_reliability import build_resilient_chain, make_tool_error_middleware
+from langchain_practice.exercises.level08_reliability import build_resilient_chain, make_tool_error_middleware
 
 pytestmark = pytest.mark.exercise
 

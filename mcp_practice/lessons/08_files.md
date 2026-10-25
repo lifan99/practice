@@ -2,7 +2,7 @@
 
 **本级只解决：资源 handler 如何限定可读取的本地文件？**
 
-完成 [level08_files.py](../level08_files.py) 的两个辅助函数，之后可接入自己的 resource handler。
+完成 [level08_files.py](../exercises/level08_files.py) 的两个辅助函数，之后可接入自己的 resource handler。
 
 - resolve_note_path(root, relative_path) 仅返回 root 内已存在的 Markdown 文件的解析后绝对 Path，不读取正文。
 - root 不存在抛 FileNotFoundError，不是目录抛 NotADirectoryError。

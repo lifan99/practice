@@ -5,7 +5,7 @@ from copy import deepcopy
 import pytest
 from mcp_types import CallToolResult, ImageContent, TextContent, Tool
 
-from mcp_practice.level01_protocol import ToolCallFailed, summarize_tools, tool_text
+from mcp_practice.exercises.level01_protocol import ToolCallFailed, summarize_tools, tool_text
 
 pytestmark = pytest.mark.exercise
 

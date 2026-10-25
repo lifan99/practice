@@ -2,7 +2,7 @@
 
 **本级只解决：怎样请求结构化对象，并检查调用者的实际约束？**
 
-前置：Level 2。完成 [level04_structured.py](../level04_structured.py) 的 `generate_plan(model, topic, max_minutes=60)`。
+前置：Level 2。完成 [level04_structured.py](../exercises/level04_structured.py) 的 `generate_plan(model, topic, max_minutes=60)`。
 
 - topic 去掉两端空白；空白 topic 或不在 1–120 的整数 max_minutes 抛 `ValueError`，不得绑定或调用模型。
 - 调用模型的 `.with_structured_output(StudyPlan)` 一次，得到可 invoke 的 Runnable。

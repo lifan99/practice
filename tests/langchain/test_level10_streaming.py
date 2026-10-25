@@ -7,7 +7,7 @@ from types import SimpleNamespace
 import pytest
 from langchain_core.messages import AIMessageChunk, HumanMessage
 
-from langchain_practice.level10_streaming import astream_text, stream_text
+from langchain_practice.exercises.level10_streaming import astream_text, stream_text
 
 pytestmark = pytest.mark.exercise
 

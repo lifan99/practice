@@ -6,7 +6,7 @@ import pytest
 from langchain_core.messages import AIMessage
 from langchain_core.runnables import Runnable, RunnableLambda
 
-from langchain_practice.level03_composition import build_parallel_analysis, build_router
+from langchain_practice.exercises.level03_composition import build_parallel_analysis, build_router
 
 pytestmark = pytest.mark.exercise
 

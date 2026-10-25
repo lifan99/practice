@@ -6,7 +6,7 @@ import pytest
 from mcp import Client
 from mcp.server import MCPServer
 
-from mcp_practice.level02_tools import build_calculator_server
+from mcp_practice.exercises.level02_tools import build_calculator_server
 
 pytestmark = pytest.mark.exercise
 

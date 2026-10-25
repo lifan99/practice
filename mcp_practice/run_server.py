@@ -4,8 +4,8 @@ import argparse
 
 import uvicorn
 
-from .level02_tools import build_calculator_server
-from .level05_http import build_http_app
+from .exercises.level02_tools import build_calculator_server
+from .exercises.level05_http import build_http_app
 
 
 def main() -> None:

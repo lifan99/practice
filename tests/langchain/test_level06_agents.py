@@ -6,8 +6,8 @@ from langchain_core.messages import AIMessage, HumanMessage
 from langchain_core.tools import tool
 from langgraph.graph.state import CompiledStateGraph
 
-from langchain_practice.level06_agents import build_tool_agent
-from langchain_practice.offline_models import ScriptedChatModel
+from langchain_practice.exercises.level06_agents import build_tool_agent
+from langchain_practice.support.offline_models import ScriptedChatModel
 
 pytestmark = pytest.mark.exercise
 

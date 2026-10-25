@@ -5,7 +5,7 @@ import asyncio
 import pytest
 from langchain_core.runnables import RunnableLambda
 
-from langchain_practice.level09_async import run_bounded_batch
+from langchain_practice.exercises.level09_async import run_bounded_batch
 
 pytestmark = pytest.mark.exercise
 

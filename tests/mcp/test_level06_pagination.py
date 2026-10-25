@@ -5,7 +5,7 @@ import asyncio
 import pytest
 from mcp_types import ListToolsResult, Tool
 
-from mcp_practice.level06_pagination import PaginationError, list_all_tools
+from mcp_practice.exercises.level06_pagination import PaginationError, list_all_tools
 
 pytestmark = pytest.mark.exercise
 

@@ -1,6 +1,6 @@
 # C9：重排与完整证据预算
 
-目标：实现 [rerank / pack_context](../level09_context.py)。重排模型通过回调注入，不要求实现 cross-encoder 训练；去重、打分调用、排序、预算选择自行完成。
+目标：实现 [rerank / pack_context](../exercises/level09_context.py)。重排模型通过回调注入，不要求实现 cross-encoder 训练；去重、打分调用、排序、预算选择自行完成。
 
 ## A：重排
 
@@ -15,7 +15,7 @@ question.strip() 非空，k>0，非法时 ValueError，先于 scorer。按 chunk
 测试注入计数器以验证选择逻辑，它不等于真实 tokenizer。实际接模型时要使用对应 tokenizer；本级 budget **只约束证据上下文**，完整模型窗口还需预留 system、问题、历史、工具schema、消息包装和输出空间。
 
 ```bash
-python -m pytest --run-exercises tests/rag/core/test_core09_context.py -q
+python -m pytest --run-exercises tests/rag/core/test_level09_context.py -q
 ```
 
 完成后展示一个只算正文长度会低估预算的例子。比较重排前后支持答案的证据是否被保留，不把上下文减少自动视作质量提升。

@@ -6,16 +6,16 @@
 
 | 级别 | 核心能力 | 任务 | 代码 |
 | --- | --- | --- | --- |
-| 1 · 提示词链 | 输入字典、消息、模型、字符串输出 | [说明](lessons/01_chain.md) | [ex01_chain.py](ex01_chain.py) |
-| 2 · 工具与解析 | 工具 schema、Pydantic 输出解析 | [说明](lessons/02_tools_parser.md) | [ex02_tools.py](ex02_tools.py) |
-| 3 · Runnable 组合 | 并行分析、批处理、显式路由 | [说明](lessons/03_composition.md) | [level03_composition.py](level03_composition.py) |
-| 4 · 结构化输出 | 模型 schema 绑定、业务约束 | [说明](lessons/04_structured.md) | [level04_structured.py](level04_structured.py) |
-| 5 · 工具调用协议 | tool call ID、参数分发、ToolMessage | [说明](lessons/05_tool_protocol.md) | [level05_tool_protocol.py](level05_tool_protocol.py) |
-| 6 · 多工具 agent | 原生 create_agent、工具循环、中间件注入 | [说明](lessons/06_agents.md) | [level06_agents.py](level06_agents.py) |
-| 7 · 会话记忆 | checkpointer、thread_id、消息隔离 | [说明](lessons/07_memory.md) | [level07_memory.py](level07_memory.py) |
-| 8 · 可靠性 | 超时重试、fallback、工具错误中间件 | [说明](lessons/08_reliability.md) | [level08_reliability.py](level08_reliability.py) |
-| 9 · 异步并发 | 最大并发、结果顺序、单项失败与取消 | [说明](lessons/09_async.md) | [level09_async.py](level09_async.py) |
-| 10 · 流式输出 | 同步/异步增量文本、异常、提前关闭 | [说明](lessons/10_streaming.md) | [level10_streaming.py](level10_streaming.py) |
+| 1 · 提示词链 | 输入字典、消息、模型、字符串输出 | [说明](lessons/01_chain.md) | [level01_chain.py](exercises/level01_chain.py) |
+| 2 · 工具与解析 | 工具 schema、Pydantic 输出解析 | [说明](lessons/02_tools_parser.md) | [level02_tools.py](exercises/level02_tools.py) |
+| 3 · Runnable 组合 | 并行分析、批处理、显式路由 | [说明](lessons/03_composition.md) | [level03_composition.py](exercises/level03_composition.py) |
+| 4 · 结构化输出 | 模型 schema 绑定、业务约束 | [说明](lessons/04_structured.md) | [level04_structured.py](exercises/level04_structured.py) |
+| 5 · 工具调用协议 | tool call ID、参数分发、ToolMessage | [说明](lessons/05_tool_protocol.md) | [level05_tool_protocol.py](exercises/level05_tool_protocol.py) |
+| 6 · 多工具 agent | 原生 create_agent、工具循环、中间件注入 | [说明](lessons/06_agents.md) | [level06_agents.py](exercises/level06_agents.py) |
+| 7 · 会话记忆 | checkpointer、thread_id、消息隔离 | [说明](lessons/07_memory.md) | [level07_memory.py](exercises/level07_memory.py) |
+| 8 · 可靠性 | 超时重试、fallback、工具错误中间件 | [说明](lessons/08_reliability.md) | [level08_reliability.py](exercises/level08_reliability.py) |
+| 9 · 异步并发 | 最大并发、结果顺序、单项失败与取消 | [说明](lessons/09_async.md) | [level09_async.py](exercises/level09_async.py) |
+| 10 · 流式输出 | 同步/异步增量文本、异常、提前关闭 | [说明](lessons/10_streaming.md) | [level10_streaming.py](exercises/level10_streaming.py) |
 
 建议按顺序学习。也可以按依赖选择分支：Level 3 依赖 Level 1，Level 4 依赖 Level 2，Level 5–7 依次衔接；Level 8 需要 Runnable 与 agent 基础；Level 9–10 还需要 async/await 和迭代器。
 
@@ -26,17 +26,9 @@
 先按[总说明](../README.md)安装依赖，在仓库根目录执行：
 
 ```bash
-# Original foundation exercises remain available.
-python -m pytest --run-exercises tests/test_langchain_practice.py -q
-
-# Start advanced practice with a single level.
-python -m pytest --run-exercises tests/langchain/test_level03_composition.py -q
-
-# Check all advanced LangChain levels.
+python -m pytest --run-exercises tests/langchain/test_level01_chain.py -q
+python -m pytest --run-exercises tests/langchain/test_level02_tools.py -q
 python -m pytest --run-exercises tests/langchain -q
-
-# Check the complete LangChain path.
-python -m pytest --run-exercises tests/test_langchain_practice.py tests/langchain -q
 ```
 
 默认 `python -m pytest -q` 只运行环境检查，练习全部跳过。加上 `--run-exercises` 后，尚未实现的函数会报 NotImplementedError。环境检查通过不代表进阶练习已经完成。
@@ -44,7 +36,7 @@ python -m pytest --run-exercises tests/test_langchain_practice.py tests/langchai
 ## 测试与模型的边界
 
 - 基础链使用 FakeListChatModel。固定文本回复不验证真实提示词效果。
-- [offline_models.py](offline_models.py) 提供 ScriptedChatModel，返回预设 AIMessage，记录消息和绑定工具名，不选择或执行工具。Level 6 会让原生 agent 实际执行本地工具；测试验证协议，不评价规划智能。
+- [offline_models.py](support/offline_models.py) 提供 ScriptedChatModel，返回预设 AIMessage，记录消息和绑定工具名，不选择或执行工具。Level 6 会让原生 agent 实际执行本地工具；测试验证协议，不评价规划智能。
 - Level 4 用结构化绑定替代模型，验证调用和业务边界；真实 provider 的结构化输出兼容性需另测。
 - Level 7 检查实际传给模型的历史消息，不用“模型回答记得什么”代替会话隔离验证。InMemorySaver 不跨进程持久化。
 - Level 8 验证指定错误类别的处理；工具错误中间件只要求同步 hook。
@@ -54,7 +46,7 @@ python -m pytest --run-exercises tests/test_langchain_practice.py tests/langchai
 
 ## 和其他练习如何衔接
 
-基础 Level 1–2 可以支持 RAG 的生成练习；Level 5–8 可以支持多工具检索应用。需要自己设计状态、分支和恢复流程时，再学习 [LangGraph](../langgraph_practice/README.md) 与 [RAG Level 9](../rag_practice/lessons/09_workflow.md)。
+基础 Level 1–2 可以支持 RAG 的框架集成；Level 5–8 可以支持多工具检索应用。需要自己设计状态、分支和恢复流程时，再学习 [LangGraph](../langgraph_practice/README.md) 与 [RAG 纠正检索](../rag_practice/workflows/lessons/01_corrective.md)。
 
 ## 后续项目
 

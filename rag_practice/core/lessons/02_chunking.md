@@ -1,6 +1,6 @@
 # C2：窗口与段落，保留原文位置
 
-目标：亲手实现 [window_chunks / paragraph_chunks](../level02_chunking.py)，不得调用现成 splitter。每块来源与输入相同，ID 严格为 `source:start:end`；text 是原文对应切片，不额外 strip。
+目标：亲手实现 [window_chunks / paragraph_chunks](../exercises/level02_chunking.py)，不得调用现成 splitter。每块来源与输入相同，ID 严格为 `source:start:end`；text 是原文对应切片，不额外 strip。
 
 ## A：重叠窗口
 
@@ -20,7 +20,7 @@ max_chars>0，否则 ValueError。本题段落分隔符固定为正则 `\n[ \t]*
 例如 `a\n\n1234567\n\nb`、预算3，正文块为 a、123、456、7、b。所有块都应满足原文切片不变量。
 
 ```bash
-python -m pytest --run-exercises tests/rag/core/test_core02_chunking.py -q
+python -m pytest --run-exercises tests/rag/core/test_level02_chunking.py -q
 ```
 
 完成后比较：窗口截断、段落切分对句子和证据的影响；字符长度与 token 长度的区别。说明复杂度时把输出文本的复制量计入。

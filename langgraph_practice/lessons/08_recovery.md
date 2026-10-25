@@ -2,7 +2,7 @@
 
 **本级只解决：暂时失败与整次运行失败，应该怎样分别处理？**
 
-完成 [level08_recovery.py](../level08_recovery.py) 的 build_recoverable_graph(checkpointer, prepare, deliver, max_attempts=2)。
+完成 [level08_recovery.py](../exercises/level08_recovery.py) 的 build_recoverable_graph(checkpointer, prepare, deliver, max_attempts=2)。
 
 - max_attempts 为正整数，否则构图时 ValueError；包含一次节点调度中的首次尝试。
 - 图使用指定 checkpointer；输入 payload 字符串，去掉两端空白，空白时 ValueError，不调用回调。

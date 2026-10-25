@@ -7,8 +7,8 @@ from langchain_core.messages import ToolMessage
 from langchain_core.tools import StructuredTool, ToolException
 from mcp_types import CallToolResult, TextContent, Tool
 
-from mcp_practice import level01_protocol
-from mcp_practice.level09_langchain import make_langchain_tools
+from mcp_practice.exercises import level01_protocol
+from mcp_practice.exercises.level09_langchain import make_langchain_tools
 
 pytestmark = pytest.mark.exercise
 

@@ -1,6 +1,6 @@
 # C6：用普通函数串起 RAG
 
-目标：实现 [format_context / answer_question](../level06_pipeline.py)，不使用 Runnable、PromptTemplate、Document 或 chain。回调和数据结构见 [types.py](../types.py)。
+目标：实现 [format_context / answer_question](../exercises/level06_pipeline.py)，不使用 Runnable、PromptTemplate、Document 或 chain。回调和数据结构见 [types.py](../types.py)。
 
 ## A：证据格式
 
@@ -16,7 +16,7 @@ format_context 接收 chunks，按顺序输出 `[chunk_id|source]\n正文`，块
 - 不修改输入；异常传播；禁止查询内容到答案的硬编码。
 
 ```bash
-python -m pytest --run-exercises tests/rag/core/test_core06_pipeline.py -q
+python -m pytest --run-exercises tests/rag/core/test_level06_pipeline.py -q
 ```
 
 完成标准：测试通过，并人工检查 system 文本三项要求。模拟生成器只证明输入组织和分支正确，不能证明真实模型会拒答、防注入或正确引用。来源列表表示提供过的证据，不自动代表模型实际使用过这些来源。

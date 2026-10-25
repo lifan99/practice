@@ -1,6 +1,6 @@
 # C7：手写检索指标
 
-目标：实现 [四个评估函数](../level07_metrics.py)，不使用 sklearn、RAGAS 等指标实现。所有 k>0，否则 ValueError。这里评估单位为 **chunk_id**；不要混用旧框架练习的 source 级标签。
+目标：实现 [四个评估函数](../exercises/level07_metrics.py)，不使用 sklearn、RAGAS 等指标实现。所有 k>0，否则 ValueError。这里评估单位为 **chunk_id**；不要混用框架集成练习的 source 级标签。
 
 ## 指标契约
 
@@ -19,7 +19,7 @@ evaluate(cases,retrieve,k) 接收 `{"question":str,"relevance":{chunk_id:grade}}
 按输入顺序每个问题调用 retrieve 一次；重复问题作为独立 case，不缓存。grade>0 的 ID 视为相关，分别复用本模块三个指标，返回 `{"recall":宏平均,"mrr":宏平均,"ndcg":宏平均}`。不修改 cases，回调异常传播。空标签样本三项记0并计入宏平均；请在真实报告中另外分组呈现有答案与无答案样本，评估拒答另需专门指标。
 
 ```bash
-python -m pytest --run-exercises tests/rag/core/test_core07_metrics.py -q
+python -m pytest --run-exercises tests/rag/core/test_level07_metrics.py -q
 ```
 
 完成后构造两个 Recall 相同但 MRR 不同的结果；说明 chunk ID 随切分配置变化时，为什么必须重新映射证据区间标签。更细的真实效果实验见[实验要求](../experiments/README.md)。

@@ -2,7 +2,7 @@
 
 **本级只解决：不同失败应在哪一层被处理？**
 
-前置：Runnable、异常、Level 6。完成 [level08_reliability.py](../level08_reliability.py)。
+前置：Runnable、异常、Level 6。完成 [level08_reliability.py](../exercises/level08_reliability.py)。
 
 ## A：重试后再降级
 

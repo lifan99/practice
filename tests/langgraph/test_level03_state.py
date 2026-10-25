@@ -6,7 +6,7 @@ import pytest
 from langchain_core.messages import AIMessage, HumanMessage, RemoveMessage
 from langgraph.graph.state import CompiledStateGraph
 
-from langgraph_practice.level03_state import build_message_graph, merge_messages
+from langgraph_practice.exercises.level03_state import build_message_graph, merge_messages
 
 pytestmark = pytest.mark.exercise
 

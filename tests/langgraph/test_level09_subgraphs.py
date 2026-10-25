@@ -7,7 +7,7 @@ import pytest
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.state import CompiledStateGraph
 
-from langgraph_practice.level09_subgraphs import build_normalizer_subgraph, build_report_graph
+from langgraph_practice.exercises.level09_subgraphs import build_normalizer_subgraph, build_report_graph
 
 pytestmark = pytest.mark.exercise
 

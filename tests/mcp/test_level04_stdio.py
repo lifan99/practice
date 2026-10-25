@@ -8,13 +8,13 @@ import pytest
 from mcp import StdioServerParameters
 from mcp_types import ListToolsResult, ReadResourceResult, TextResourceContents, Tool
 
-from mcp_practice import level04_stdio as stdio
+from mcp_practice.exercises import level04_stdio as stdio
 
 pytestmark = pytest.mark.exercise
 
 
 def parameters():
-    return StdioServerParameters(command=sys.executable, args=["-m", "mcp_practice.reference_server"], cwd=Path(__file__).resolve().parents[2])
+    return StdioServerParameters(command=sys.executable, args=["-m", "mcp_practice.support.reference_server"], cwd=Path(__file__).resolve().parents[2])
 
 
 def test_real_stdio_server_round_trip():

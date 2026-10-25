@@ -6,7 +6,7 @@ import pytest
 from mcp import Client
 from mcp_types import CallToolResult, TextContent
 
-from mcp_practice.level07_execution import ToolCall, build_progress_server, call_tools_bounded
+from mcp_practice.exercises.level07_execution import ToolCall, build_progress_server, call_tools_bounded
 
 pytestmark = pytest.mark.exercise
 
