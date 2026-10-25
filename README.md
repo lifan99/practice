@@ -4,10 +4,22 @@
 
 LangChain、LangGraph、RAG 与 MCP 的独立编程练习。中文任务说明，英文代码与类型标注；提供函数骨架和公开测试，核心实现保留 TODO，不附完整答案。前置为 Python 函数、列表、字典、异常与虚拟环境，异步章节另需 async/await。
 
+## 从哪里开始
+
+默认走 **手写 RAG 基线 → 可用服务 → 评估优化 → 岗位专题选修**。完整顺序与进入下一阶段的证据见[课程主线](curriculum/README.md)，阶段任务见[知识库项目](projects/README.md)。基础完成后立即开始项目，不需要先刷完所有框架章节。
+
+- 学机制：先做 RAG C1–C4、C6–C7，P1 对照时补 C5；C8–C10 由失败分析决定。
+- 做工程：P2 补齐 API、数据库、身份边界、版本更新、进程重启和容器；P3 用质量、成本与延迟验证改进。
+- 学框架：选择项目实际需要的 LangChain、LangGraph、MCP 或 GraphRAG 单元；重复机制题可按迁移证据跳过。
+
+[基础补学](curriculum/foundations/README.md)按需使用；[独立迁移任务](curriculum/README.md)逐步撤去函数骨架。项目与迁移部分提供任务契约和评审矩阵，尚无项目实现或预置自动验收器。
+
 ## 目录怎么找
 
 | 路径 | 内容 | 学习入口 |
 | --- | --- | --- |
+| curriculum/ | 主修／选修、基础补学、迁移与学习证据 | [学习顺序](curriculum/README.md) |
+| projects/ | 同一知识库项目的基线、服务、评估与专题任务 | [项目交付](projects/README.md) |
 | langchain_practice/ | 十级组件组合、工具、agent、记忆、可靠性、异步与流 | [LangChain](langchain_practice/README.md) |
 | langgraph_practice/ | 十级状态、分支、并行、checkpoint、中断与恢复 | [LangGraph](langgraph_practice/README.md) |
 | rag_practice/core/ | 十级手写 RAG：切分、余弦、索引、BM25、评估与融合 | [RAG 手写核心](rag_practice/core/README.md) |
@@ -56,7 +68,7 @@ TODO 导致的 NotImplementedError 是尚未完成的任务。公开测试通过
 
 support/offline.py 的词频向量、FakeListChatModel 和各主题 support/ 是提供好的受控设施。它们验证流程，不证明真实语义检索、规划、回答正确性或防提示注入效果。MCP stdio 使用本地测试子进程；HTTP 验收使用进程内 ASGI，不开放端口。
 
-完成基础后可通过注入接口接真实 embedding、chat model 和 reranker，再用固定问题集比较质量、延迟与费用。记录有答案、无答案和歧义样本；凭据通过环境变量提供，真实调用可能收费。RAG 的[综合实验](rag_practice/core/experiments/README.md)给出记录要求。
+完成最小检索问答后就建立首轮评估，再通过注入接口接真实或本地 embedding、chat model 和按需选用的 reranker。固定问题集比较质量、延迟与费用；记录有答案、无答案和歧义样本。凭据通过环境变量提供，真实服务调用可能收费。RAG 的[实验规范](rag_practice/core/experiments/README.md)与[P1–P3](projects/README.md)给出交付要求。项目服务依赖由学习者在独立环境锁定，当前根锁文件只保证组件练习环境。
 
 ## 官方参考
 

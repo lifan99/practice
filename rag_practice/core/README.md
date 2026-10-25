@@ -19,6 +19,10 @@
 
 C1→C2→C4，C3→C4；C5 与 C4 可并行学习；C6 接任意 retriever；C7 建立评估基线后再做 C8–C10。测试使用独立输入，可单独验收每一级；组合题通过注入替代组件隔离尚未完成的前级。提供好的 [types.py](types.py) 只定义数据契约。
 
+## 在主修路线中的位置
+
+C1–C4、C6–C7 后启动 [P1 基线项目](../../projects/knowledge-assistant/01_baseline.md)，加入 C5 比较词法与向量；C8–C10 依据评估选择，不作为首次交付的前置。[T1](../../curriculum/transfer/01_retrieval.md)检查新数据格式与元数据变化后的独立迁移。
+
 ## 安装与运行
 
 在仓库根目录，用独立虚拟环境仅安装测试依赖即可运行这条路径：
@@ -41,4 +45,4 @@ python -m pytest --run-exercises tests/rag/core -q
 - 每级需提交实现、测试结果，以及任务末尾要求的解释或实验记录。算法题另说明时间／空间复杂度；不以测试数量或组件数量代表模型质量。
 - 允许调用模型或现成中文分词器，不要求重写 Transformer、embedding 训练或 cross-encoder。HNSW/IVF 属于完成精确检索后的选修。
 
-最后完成[综合对比实验](experiments/README.md)，再进入 [LangChain 适配层](../langchain/README.md)。[RAG 总路径](../README.md)列出各分支和前置依赖。
+边实现边按[实验规范](experiments/README.md)建立基线与增量对比。完成基础后进入[项目主线](../../projects/README.md)；需要框架时选择 [LangChain 适配层](../langchain/README.md)。[RAG 总路径](../README.md)列出各分支与依赖。

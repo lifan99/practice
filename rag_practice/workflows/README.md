@@ -8,6 +8,8 @@
 
 前置：RAG 问答与评估、LangGraph 分支和循环。此分支使用 LangChain Document/Runnable 与真正的 CompiledStateGraph，需要完整锁定环境。
 
+本路径属于[项目 P4 工作流方向](../../projects/knowledge-assistant/04_extensions.md)选修；先用 P1–P3 建立基线，再比较纠正循环的质量与额外调用。需要跨进程恢复和业务副作用时另完成 [T3](../../curriculum/transfer/03_recovery.md)。
+
 ```bash
 python -m pytest --run-exercises tests/rag/workflows -q
 ```

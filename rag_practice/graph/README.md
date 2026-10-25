@@ -9,6 +9,8 @@
 
 前置为字典、集合与有向图。第1级用 dataclass；第2级原文证据用 LangChain Document。样本放在 [data/](data/)，事实文件为 [facts.json](data/facts.json)。人工事实不代表已经完成自动实体抽取。
 
+本路径属于[项目 P4 关系检索方向](../../projects/knowledge-assistant/04_extensions.md)选修。在相同数据与任务上保留词法／向量基线，报告关系查询收益与维护代价；不作为一般知识库服务的必修前置。
+
 ```bash
 python -m pytest --run-exercises tests/rag/graph -q
 ```

@@ -23,6 +23,10 @@
 
 每级包含输入输出、边界情况、独立测试和完成标准。通过测试后，还应能解释状态变化与终止条件。并行任务使用普通回调，不把它们称为已经具备自主规划的多 agent 系统。
 
+## 主修与专题
+
+本主题作为[项目 P4](../projects/knowledge-assistant/04_extensions.md)的工作流选修。优先 Level 1–3、6–8；并行、动态分发、子图与流接口在需要时补相应级别。恢复练习后完成 [T3](../curriculum/transfer/03_recovery.md)，独立验证进程重启和副作用幂等。P2 的基础服务可先交付，不要求引入状态图。
+
 ## 如何验收
 
 按[总说明](../README.md)安装依赖，在仓库根目录执行：
@@ -56,7 +60,7 @@ InMemorySaver 不保证跨进程持久化；checkpoint 也不自动使真实外�
 
 ## 后续项目
 
-以下方向尚未提供实现与独立验收：持久化数据库、store 跨线程记忆、time travel 与 checkpoint 分叉、Functional API 的 durable tasks、缓存与异步流、supervisor/handoff 多 agent、真实模型驱动的图、部署与观测平台。先完成相应基础，再为每个项目定义可验证目标，不把新增组件数当作能力等级。
+[T3](../curriculum/transfer/03_recovery.md)与[P4 工作流方向](../projects/knowledge-assistant/04_extensions.md)提供了持久化与进程重启的独立任务规格，需自行选择兼容依赖、实现与测试。store 跨线程记忆、time travel、Functional API durable tasks、缓存与异步流、supervisor/handoff、多模型图和观测平台仍为按需专题，不把新增组件数当作能力等级。
 
 ## 官方参考
 

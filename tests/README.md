@@ -16,3 +16,7 @@
 每级统一使用 test_levelNN_主题.py，可单独运行；同一目录的集成测试使用 test_integration.py。pytest.ini 使用 importlib 导入模式，允许不同路径有同名测试文件。conftest.py 保留练习开关；rag/core/conftest.py 提供小样本构造器。
 
 公开用例检查行为契约的一部分。绿色环境 CI 不代表练习完成或真实模型质量通过，仍需完成每级解释、边界自查和实验记录。仅安装 requirements-rag-core.txt 时，只运行 rag/core/；完整环境才可收集其他主题。
+
+## 项目与迁移的验证范围
+
+[curriculum/](../curriculum/README.md)的基础／迁移任务和[projects/](../projects/README.md)的阶段项目提供行为规格与人工评审矩阵，尚无预置实现或自动验收器；本目录的424个组件用例不会验收这些新增任务。学习者应在独立项目中编写测试，分别记录受控依赖、实际数据库、跨进程、容器与真实模型的验证范围。项目默认测试与需要实际模型的质量实验使用不同运行入口。

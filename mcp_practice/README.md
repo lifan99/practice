@@ -30,6 +30,10 @@ MCP 定义应用与服务之间的能力和通信协议，本身不替你选择�
 
 前置：Python 类型标注、字典、异常、async/await 与异步上下文管理器。建议基础级依次完成；第 6–8 级可在理解 Client 后独立练习。第 9 级建议先学 LangChain 的工具与 ToolMessage，不要求先实现完整 agent。第 10 级再组合连接、发现和适配。
 
+## 项目中的选择
+
+本主题是[项目 P4](../projects/knowledge-assistant/04_extensions.md)的工具接入选修。先完成 Level 1–4，有 HTTP 接入再加 Level 5；文件资源加 Level 8，框架接入加 Level 9，多个服务才进入 Level 10。并发、超时与释放是通用能力，先用 [F2](../curriculum/foundations/02_async.md)和[T2](../curriculum/transfer/02_async.md)补齐；不要求为了覆盖协议特性而扩展业务范围。
+
 ## 安装与验收
 
 在仓库根目录按[总说明](../README.md)安装锁定依赖：
