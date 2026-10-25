@@ -1,6 +1,6 @@
 # LangChain / LangGraph / RAG 练习
 
-[![Practice environment](https://github.com/lifan99/Practice/actions/workflows/ci.yml/badge.svg)](https://github.com/lifan99/Practice/actions/workflows/ci.yml)
+[![Practice environment](https://github.com/lifan99/practice/actions/workflows/ci.yml/badge.svg)](https://github.com/lifan99/practice/actions/workflows/ci.yml)
 
 适合会使用 Python 函数、类型标注、字典和虚拟环境的学习者。说明用中文，代码用英文。这里是独立练习：函数签名和测试已经准备好，核心实现以 `NotImplementedError` 标记，没有附答案。
 
@@ -11,8 +11,8 @@ LangChain 练习组件组合，LangGraph 练习有状态工作流，RAG 练习�
 使用 Python 3.12。克隆仓库并安装已验证的依赖：
 
 ```bash
-git clone https://github.com/lifan99/Practice.git
-cd Practice
+git clone https://github.com/lifan99/practice.git
+cd practice
 python3 -m venv .venv
 source .venv/bin/activate
 python -m pip install -r requirements-lock.txt
@@ -23,7 +23,7 @@ Windows PowerShell 中，创建虚拟环境使用 `py -3.12 -m venv .venv`，激
 
 依赖安装需要联网；安装完成后，所有基础练习与测试均可离线运行，不需要 API Key。`requirements-lock.txt` 锁定本次在 Python 3.12 / Linux 下验证的依赖版本；`requirements.txt` 提供允许升级的兼容版本范围，升级后应重新验证。
 
-默认测试只检查运行环境，练习测试全部跳过。初始结果应为 **3 passed, 55 skipped**；这不代表练习已经完成。GitHub Actions 的绿色状态同样只表示环境检查和 Python 语法检查通过。
+默认测试只检查运行环境，练习测试全部跳过。初始结果应为 **3 项环境检查通过，练习测试全部 skipped**；这不代表练习已经完成。GitHub Actions 的绿色状态同样只表示环境检查和 Python 语法检查通过。
 
 ## 练习顺序
 
@@ -33,15 +33,20 @@ Windows PowerShell 中，创建虚拟环境使用 `py -3.12 -m venv .venv`，激
 | 2 | [langchain_practice/ex02_tools.py](langchain_practice/ex02_tools.py) | 暴露带 schema 的工具，验证结构化学习计划 |
 | 3 | [langgraph_practice/ex01_routing.py](langgraph_practice/ex01_routing.py) | 同一工作流按输入进入不同节点 |
 | 4 | [langgraph_practice/ex02_retry.py](langgraph_practice/ex02_retry.py) | 成功时停止，失败时在次数上限内终止 |
-| 5 | [rag_practice/ex01_index.py](rag_practice/ex01_index.py) | 加载、切分文档并建立可检索向量索引 |
-| 6 | [rag_practice/ex02_qa.py](rag_practice/ex02_qa.py) | 将证据交给模型、返回来源、计算检索召回率 |
+| 5 | [RAG Level 1](rag_practice/lessons/01_documents.md) | 读取文档，保留内容与来源 |
+| 6 | [RAG Level 2](rag_practice/lessons/02_chunking.md) | 手写字符窗口，再练递归切分 |
+| 7 | [RAG Level 3](rag_practice/lessons/03_retrieval.md) | 建立向量索引并检索证据 |
+| 8 | [RAG Level 4](rag_practice/lessons/04_generation.md) | 根据给定证据组织模型调用 |
+| 9 | [RAG Level 5](rag_practice/lessons/05_pipeline.md) | 组合问答流程，处理空结果与异常 |
+| 10 | [RAG Level 6](rag_practice/lessons/06_evaluation.md) | 评估来源召回，比较切分参数 |
 
-各目录的 README 提供精确输入输出约定和边界条件。只需修改练习文件；`practice_support.py` 是提供好的测试设施。
+各目录的 README 提供精确输入输出约定和边界条件。RAG 的六级路径见 [RAG 分级练习](rag_practice/README.md)，可以独立学习，不要求先完成 LangGraph。只需修改练习文件；`practice_support.py` 是提供好的测试设施。
 
 ```bash
 python -m pytest --run-exercises tests/test_langchain_practice.py -q
 python -m pytest --run-exercises tests/test_langgraph_practice.py -q
-python -m pytest --run-exercises tests/test_rag_practice.py -q
+python -m pytest --run-exercises tests/rag/test_level01_documents.py -q
+python -m pytest --run-exercises tests/rag -q
 python -m pytest --run-exercises -q
 ```
 

@@ -1,48 +1,50 @@
-# RAG 练习
+# RAG 分级练习
 
-前置：LangChain 的 Document、Runnable 和 chat message；余弦相似度的含义。本组只建立本地内存索引，不使用数据库服务。样本文档描述学习项目，不是待执行指令。
+每一级只增加一个主要能力：**文档 → 切分 → 检索 → 生成 → 组合 → 评估**。所有代码都是待完成的练习，不附完整答案。先完成当前级，再进入下一级；不要求先掌握数据库部署或真实模型服务。
 
-## RAG-1：文档到索引
+## 从哪里开始
 
-完成 `ex01_index.py` 的三个函数。
+基础准备：Python 函数、字典、列表、Path 和类型标注。第 1–3 级无需 chat model；第 4 级开始需要 LangChain messages / Runnable，可先完成仓库的 LangChain 练习。整个基础路径不要求先学 LangGraph。
 
-- `load_documents(directory)`：只加载本层扩展名严格为 `.md` 的文件，按文件名升序返回。UTF-8 读取，去掉内容两端空白，忽略空文件；每个 Document 的 `metadata["source"]` 为文件名（不是绝对路径）。目录不存在时抛 `FileNotFoundError`；路径不是目录时抛 `NotADirectoryError`；存在但没有有效文档时返回空列表。无须递归遍历。
-- `split_documents(documents, chunk_size, chunk_overlap)`：实际使用 `RecursiveCharacterTextSplitter`，长度单位为字符，返回非空白分块，保留输入 metadata。`chunk_size>0` 且 `0<=chunk_overlap<chunk_size`，否则抛 `ValueError`。必须能切开无分隔符长文本，单块长度不超过 chunk_size。空文档列表返回空列表，但仍须先校验参数。不得修改输入文档。
-- `build_index(chunks, embeddings)`：返回包含全部 chunks 的 `InMemoryVectorStore`，实际使用传入的 embedding 实例。空 chunks 抛 `ValueError`。不同构图调用之间的索引应相互独立。
+| 级别 | 本级要回答的问题 | 题目 | 代码 |
+| --- | --- | --- | --- |
+| 1 · 文档 | 如何保留内容与来源？ | [任务说明](lessons/01_documents.md) | [level01_documents.py](level01_documents.py) |
+| 2 · 切分 | 如何从字符窗口过渡到递归切分？ | [任务说明](lessons/02_chunking.md) | [level02_chunking.py](level02_chunking.py) |
+| 3 · 检索 | 如何只找证据、不生成答案？ | [任务说明](lessons/03_retrieval.md) | [level03_retrieval.py](level03_retrieval.py) |
+| 4 · 生成 | 给定证据后如何组织模型输入？ | [任务说明](lessons/04_generation.md) | [level04_generation.py](level04_generation.py) |
+| 5 · 组合 | 如何处理检索、生成与无证据分支？ | [任务说明](lessons/05_pipeline.md) | [level05_pipeline.py](level05_pipeline.py) |
+| 6 · 评估 | 如何测量召回并比较切分配置？ | [任务说明](lessons/06_evaluation.md) | [level06_evaluation.py](level06_evaluation.py) |
 
-`data/` 提供三份英文 Markdown 文档。`practice_support.KeywordEmbeddings` 是固定词表词频向量，不需要下载模型；查询示例是 `langgraph graph checkpoint`。真实语义 embedding 属于完成后的扩展。
+每级的说明给出前置知识、输入输出契约、边界情况、独立测试命令和完成标准。第 2 级有先后两道小题，第 6 级另有参数对比实验。
 
-## RAG-2：问答与评估
+## 如何运行
 
-完成 `ex02_qa.py` 的两个函数。
+先按照[总说明](../README.md)安装依赖，然后在仓库根目录执行：
 
-### answer_question
+```bash
+# Start with level 1 only.
+python -m pytest --run-exercises tests/rag/test_level01_documents.py -q
 
-输入 question、注入的 retriever 和 model；输出 `{"answer": str, "sources": list[str]}`。
+# After completing level 1, move to level 2.
+python -m pytest --run-exercises tests/rag/test_level02_chunking.py -q
 
-- question 去掉两端空白，空字符串抛 `ValueError`，且不调用任何依赖。
-- 使用 `.invoke(question)` 调用 retriever 一次，返回值为 `list[Document]`；约定每份文档都有非空字符串 source。
-- 没有命中时，不调用 model，返回 answer=`I don't know based on the provided documents.`，sources=`[]`。
-- 有命中时，将规范化后的问题、所有命中文档内容及各自 source 交给 model 一次。模型输入需兼容 chat model：消息列表或具有 `.to_messages()` 的 PromptValue。
-- system 消息要明确要求：只根据给定上下文回答，证据不足则拒答，将文档视为数据，不执行文档中的指令。测试不限定这段指令的逐字措辞。
-- answer 为模型回复的文本。sources 为传入模型的文档来源，按第一次出现的顺序去重；不要声称它们都是模型实际引用过的来源。
-- 不修改 retriever 返回的文档，依赖抛出的异常直接传播。
+# Run all RAG acceptance checks when ready.
+python -m pytest --run-exercises tests/rag -q
+```
 
-这只是最小问答链。检索命中不等于证据充分；基础题只对“没有命中”做确定性拒答。思考题会讨论其余情况。
+初始 `NotImplementedError` 是待完成练习的标记。默认 `python -m pytest -q` 跳过全部练习，只验证运行环境，不能证明你已经完成某级。公开测试通过后，还应对照契约检查边界，并完成本级解释或观察任务。
 
-### recall_at_k
+测试尽量隔离不同级别：第 3 级直接使用提供好的 Document，第 4 级直接使用给定证据，第 5 级用替代生成函数检查组合逻辑，第 6 级用固定 retriever 检查指标。这样某一级的失败不会迫使你同时调试整条链。最终串联时仍需完成前面的组件。
 
-按来源 ID 评估：分母为所有相关来源的数量，分子为前 k 条检索结果中出现过的不同相关来源数。注意 k 按原始结果位置截断，重复来源不额外增加命中数。
+## 数据与范围
 
-例如 `retrieved_sources=["a","a","b"]`、`relevant_sources={"a","b"}`，k=2 时结果为 0.5，k=3 时为 1.0。k 是正整数；k<=0 或相关来源集合为空时抛 `ValueError`。结果列表为空且相关集合非空时返回 0.0；k 超出结果长度时使用全部结果。
+- [data/](data/) 包含三份短 Markdown 文档；第 1 级只读取 `.md` 文件。
+- [evaluation_queries.json](data/evaluation_queries.json) 给出第 6 级组件实验的问题与相关来源，加载后把来源列表转成 set。
+- `practice_support.KeywordEmbeddings` 是本地词频向量；`FakeListChatModel` 返回预设文本。两者用于流程验证，不代表真实语义检索或生成质量。
+- 通过 context 传递 source 不证明模型实际引用了它，也不证明回答正确。基础题仅对空检索结果实现确定性拒答。
 
-## 验收与思考
+旧的 `ex01_index.py`、`ex02_qa.py` 保留为导入兼容入口。请修改相应的 `levelXX_*.py`，不要在旧文件重复实现。
 
-运行 `python -m pytest --run-exercises tests/test_rag_practice.py -q`。
+## 基础路径完成后的扩展
 
-- 多个 chunk 来自同一文档时，chunk recall 和 source recall 有何不同？
-- 高 recall 是否足以证明最终答案正确？
-- 怎样区分“有命中但问题无答案”和“有足够证据”？
-- 将真实 embedding 替换进来后，哪些测试仍应保持确定性？
-
-可选扩展：加入重排或相似度阈值，并对固定评估集比较检索 recall、无答案问题的拒答表现与生成质量。不要把模拟模型的固定回复当作生成质量证据。
+以下是可选项目方向，不是当前六级已提供的实现或测试：结构化文档切分与表格处理、真实 embedding 和 chat model、重排与混合检索、持久化与增量更新、LangGraph 工作流。每次只选一个方向，给出可观察的改进目标后再增加组件。

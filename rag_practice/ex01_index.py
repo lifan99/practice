@@ -1,26 +1,7 @@
-"""Exercise 1: load documents, split text, and build an index."""
+"""Compatibility imports; implement the exercises in levels 1 through 3."""
 
-from pathlib import Path
+from .level01_documents import load_documents
+from .level02_chunking import split_documents
+from .level03_retrieval import build_index
 
-from langchain_core.documents import Document
-from langchain_core.embeddings import Embeddings
-from langchain_core.vectorstores import InMemoryVectorStore
-
-
-def load_documents(directory: Path) -> list[Document]:
-    """Load nonempty UTF-8 Markdown files with source metadata."""
-    raise NotImplementedError("TODO RAG-1A: implement load_documents")
-
-
-def split_documents(
-    documents: list[Document], chunk_size: int = 160, chunk_overlap: int = 30
-) -> list[Document]:
-    """Split documents while retaining source metadata."""
-    raise NotImplementedError("TODO RAG-1B: implement split_documents")
-
-
-def build_index(
-    chunks: list[Document], embeddings: Embeddings
-) -> InMemoryVectorStore:
-    """Build an in-memory index with the supplied embedding model."""
-    raise NotImplementedError("TODO RAG-1C: implement build_index")
+__all__ = ["load_documents", "split_documents", "build_index"]
