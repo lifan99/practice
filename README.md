@@ -1,10 +1,10 @@
-# LangChain / LangGraph / RAG 练习
+# LangChain / LangGraph / RAG / MCP 练习
 
 [![Practice environment](https://github.com/lifan99/practice/actions/workflows/ci.yml/badge.svg)](https://github.com/lifan99/practice/actions/workflows/ci.yml)
 
 适合会使用 Python 函数、类型标注、字典和虚拟环境的学习者。说明用中文，代码用英文。这里是独立练习：函数签名和测试已经准备好，核心实现以 `NotImplementedError` 标记，没有附答案。
 
-LangChain 练习组件组合，LangGraph 练习有状态工作流，RAG 练习用外部文档支持回答。RAG 是一种架构，不是与前两者并列的 Python 库；本项目用 LangChain 组件实现它。
+LangChain 练习组件组合，LangGraph 练习有状态工作流，RAG 练习用外部文档支持回答。RAG 是一种架构，不是与前两者并列的 Python 库；本项目用 LangChain 组件实现它。MCP 则练习应用与工具、资源服务之间的标准协议。
 
 ## 安装与检查
 
@@ -21,9 +21,9 @@ python -m pytest -q
 
 Windows PowerShell 中，创建虚拟环境使用 `py -3.12 -m venv .venv`，激活使用 `.venv\Scripts\Activate.ps1`，其余 Python 命令相同。
 
-依赖安装需要联网；安装完成后，所有基础练习与测试均可离线运行，不需要 API Key。`requirements-lock.txt` 锁定本次在 Python 3.12 / Linux 下验证的依赖版本；`requirements.txt` 提供允许升级的兼容版本范围，升级后应重新验证。
+依赖安装需要联网；安装完成后，所有基础练习与测试均可离线运行，不需要 API Key；MCP 的 stdio 验收会启动本项目提供的本地测试子进程，HTTP 测试不开放端口。`requirements-lock.txt` 锁定本次在 Python 3.12 / Linux 下验证的依赖版本；`requirements.txt` 提供允许升级的兼容版本范围，升级后应重新验证。
 
-默认测试只检查运行环境，练习测试全部跳过。初始结果应为 **4 项环境检查通过，练习测试全部 skipped**；这不代表练习已经完成。GitHub Actions 的绿色状态同样只表示环境检查和 Python 语法检查通过。
+默认测试只检查运行环境，练习测试全部跳过。初始结果应为 **6 项环境检查通过，练习测试全部 skipped**；这不代表练习已经完成。GitHub Actions 的绿色状态同样只表示环境检查和 Python 语法检查通过。
 
 ## 学习入口
 
@@ -32,10 +32,11 @@ Windows PowerShell 中，创建虚拟环境使用 `py -3.12 -m venv .venv`，激
 | LangChain | 10 级：基础组件、并行与路由、结构化输出、多工具 agent、记忆、可靠性、异步、流式输出 | [LangChain 分级练习](langchain_practice/README.md) |
 | LangGraph | 条件分支、有界重试 | [LangGraph 练习](langgraph_practice/README.md) |
 | RAG | 11 级：基础六级、Advanced RAG、LangGraph RAG、GraphRAG 局部图检索 | [RAG 分级练习](rag_practice/README.md) |
+| MCP | 10 级：基础协议与 server/client、stdio、HTTP、分页、并发、文件边界、LangChain 适配、多服务组合 | [MCP 分级练习](mcp_practice/README.md) |
 
 各主题的 README 提供每级前置知识、输入输出约定、独立测试命令与完成标准。LangChain 基础两级可作为 RAG 生成部分的准备；RAG 基础和知识图谱分支不要求先学 LangGraph，工作流分支则需要。先选一条路径，逐级完成即可。
 
-原有 LangChain 基础文件和测试入口保持可用。只需修改对应练习文件；practice_support.py 和 LangChain 的 offline_models.py 是提供好的测试设施。
+原有 LangChain 基础文件和测试入口保持可用。只需修改对应练习文件；practice_support.py、LangChain 的 offline_models.py，以及 MCP 的 reference_server.py / test_support.py 是提供好的测试设施。
 
 ```bash
 python -m pytest --run-exercises tests/test_langchain_practice.py -q
@@ -43,6 +44,7 @@ python -m pytest --run-exercises tests/langchain -q
 python -m pytest --run-exercises tests/test_langgraph_practice.py -q
 python -m pytest --run-exercises tests/rag/test_level01_documents.py -q
 python -m pytest --run-exercises tests/rag -q
+python -m pytest --run-exercises tests/mcp -q
 python -m pytest --run-exercises -q
 ```
 
@@ -66,3 +68,5 @@ python -m pytest --run-exercises -q
 - [LangGraph Graph API](https://docs.langchain.com/oss/python/langgraph/graph-api)
 - [LangChain 检索与 RAG](https://docs.langchain.com/oss/python/deepagents/retrieval)
 - [LangChain Core API](https://reference.langchain.com/python/langchain-core/)
+
+- [MCP Python SDK v2](https://py.sdk.modelcontextprotocol.io/)

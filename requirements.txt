@@ -3,3 +3,4 @@ langgraph>=1,<2
 langchain-text-splitters>=1,<2
 numpy>=1.26,<3
 pytest>=8,<10
+mcp>=2.3,<3
