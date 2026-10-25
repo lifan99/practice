@@ -9,7 +9,7 @@
 默认走 **手写 RAG 基线 → 可用服务 → 评估优化 → 岗位专题选修**。完整顺序与进入下一阶段的证据见[课程主线](curriculum/README.md)，阶段任务见[知识库项目](projects/README.md)。基础完成后立即开始项目，不需要先刷完所有框架章节。
 
 - 学机制：先做 RAG C1–C4、C6–C7，P1 对照时补 C5；C8–C10 由失败分析决定。
-- 做工程：P2 补齐 API、数据库、身份边界、版本更新、进程重启和容器；P3 用质量、成本与延迟验证改进。
+- 做工程：P2 使用 [Milvus](projects/knowledge-assistant/milvus.md)提供向量存储，补齐 API、业务数据库、身份边界、版本更新、进程重启和容器；P3 用质量、成本与延迟验证改进。
 - 学框架：选择项目实际需要的 LangChain、LangGraph、MCP 或 GraphRAG 单元；重复机制题可按迁移证据跳过。
 
 [基础补学](curriculum/foundations/README.md)按需使用；[独立迁移任务](curriculum/README.md)逐步撤去函数骨架。项目与迁移部分提供任务契约和评审矩阵，尚无项目实现或预置自动验收器。

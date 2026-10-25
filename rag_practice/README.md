@@ -17,6 +17,10 @@ C1–C4、C6–C7 后开始 [P1](../projects/knowledge-assistant/01_baseline.md)
 
 需要框架时做 LangChain 类型适配与 L9 桥接，重复机制练习按该路径规则选做；需要可恢复流程或关系查询时再进入 workflows/ 或 graph/。完整先修与迁移要求见[课程主线](../curriculum/README.md)。
 
+## 从手写索引到 Milvus
+
+项目向量存储主线为[Milvus Standalone](../projects/knowledge-assistant/milvus.md)。先完成核心索引、指标与 P1，再在 P2 的独立项目环境接入；同一批 chunks、向量与候选范围用于精确检索对照。权限、版本、删除、持久化与服务重启按接入任务验收，core 本身保持纯 Python 数据结构与普通函数。
+
 ## 文件约定
 
 ```text
