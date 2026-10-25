@@ -1,0 +1,32 @@
+name: Practice environment
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  environment:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      LANGSMITH_TRACING: "false"
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements-lock.txt
+      - name: Install verified dependencies
+        run: python -m pip install -r requirements-lock.txt
+      - name: Check dependency compatibility
+        run: python -m pip check
+      - name: Check Python syntax
+        run: python -m compileall -q langchain_practice langgraph_practice rag_practice practice_support.py tests
+      - name: Validate environment (exercise checks are opt-in)
+        run: python -m pytest -q
