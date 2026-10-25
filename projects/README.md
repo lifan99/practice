@@ -11,6 +11,10 @@
 | [P3 评估优化](knowledge-assistant/03_evaluation.md) | P2 与冻结的 P1 基线 | 一项有依据的优化、消融、回归与成本报告 | 主修；包括无效结果 |
 | [P4 专题扩展](knowledge-assistant/04_extensions.md) | P2、P3；对应框架先修 | 工作流／MCP／关系检索三选一 | 按目标岗位选修 |
 
+## 可复用的 MVP 材料
+
+[基础读物](../curriculum/readings/README.md)与[离线示例](../support/mvp_examples/README.md)已接入审核 MVP 的通用内容，主要支持 P1 的契约／依赖边界和 P2 的并发／服务生命周期。复用来源与哈希见[记录](../curriculum/readings/SOURCES.md)。示例是提供好的观察材料；项目服务和独立作业仍需自己设计，原 MVP 未提供的数据库、身份与持久化幂等不能标为已复用完成。
+
 ## 实现与成果放哪里
 
 建议将项目实现放在单独的项目目录或仓库，用自己的包结构、测试和锁文件维护；本练习仓库只保存课程任务。复用已完成的核心机制时明确来源与版本，不通过修改练习契约适配服务。项目环境单独锁定，FastAPI、数据库驱动、容器工具和持久化 checkpointer 尚未包含在本课程锁文件内。

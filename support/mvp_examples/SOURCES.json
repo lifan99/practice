@@ -1,0 +1,69 @@
+{
+  "repository": "https://github.com/lifan99/utility",
+  "verified_public_commit": "51d9f356e2a3c5bf27bff93aff2a7cf523a87232",
+  "local_source_revision": "8d2e092f4e9b0d2739b27aa296b48be1c94a2176",
+  "verification": "All selected local files match their public blob hashes at verified_public_commit.",
+  "adaptation": "Six standalone examples retain their original behavior with English comments and docstrings; protocols.py adds two assertions. Readings adapt selected concepts to this curriculum. quotes.py extracts and adapts the citation demonstration from the contracts reading.",
+  "files": [
+    {
+      "path": "examples/core/E02_protocol.py",
+      "sha256": "e5c6aa6d651509069a0d45884d6ca1771fbe15f9ed492c9c6d47abb2264f9366",
+      "git_blob_sha": "bc1e5204064b260ae56dbe8e7790bfcbff3c863c",
+      "destination": "support/mvp_examples/protocols.py"
+    },
+    {
+      "path": "examples/async/E01_concurrent_reviews.py",
+      "sha256": "f400effba26fe9c1377898cf987f2f2fbeb2ce30cbd27d00879219e67c877dfc",
+      "git_blob_sha": "21042fd80152c4ef4fdada67c51f74e819d07de0",
+      "destination": "support/mvp_examples/concurrency.py"
+    },
+    {
+      "path": "examples/async/E02_timeout_budgets.py",
+      "sha256": "c267498fcc51b4fc32c0212f46a512a689049682012957fd04cb809cb9e281ce",
+      "git_blob_sha": "f796e13ccbd31c7192c5c1f776024a80d9320e1c",
+      "destination": "support/mvp_examples/timeouts.py"
+    },
+    {
+      "path": "examples/async/E03_cancel_cleanup.py",
+      "sha256": "356d7adc1321231ed619ad6a4f9676e495ed2bf5b5e6e8fcfae88cc7b27df7fc",
+      "git_blob_sha": "8394b5ab6ce8ce185814da4a81f626d3405fea5f",
+      "destination": "support/mvp_examples/cancellation.py"
+    },
+    {
+      "path": "examples/api/E01_http_contract.py",
+      "sha256": "bad697526335354b6913b0ca1f9f32b9a0d345f0ba4f04d6a6695498c351cbb2",
+      "git_blob_sha": "0611d0baf7188018d8a55996d2ca67b0a815fe03",
+      "destination": "support/mvp_examples/http_contract.py"
+    },
+    {
+      "path": "examples/api/E02_admission_lifecycle.py",
+      "sha256": "4d4df8bc71da70f5c04b9bbbaa0c47821a97fa3c3a15decf96952cc7d32b2b2d",
+      "git_blob_sha": "52e3aa4d97609fbfaadbb15ae9ec2b7e8edc5024",
+      "destination": "support/mvp_examples/admission.py"
+    },
+    {
+      "path": "docs/technical/数据契约.md",
+      "sha256": "167a362db9c87ed207842044343c71274a1c866b9d724f84a36c49cbde842e8e",
+      "git_blob_sha": "0e690f2c9790fad93b44885c973ee4163163e52d",
+      "destination": "curriculum/readings/"
+    },
+    {
+      "path": "docs/technical/异步.md",
+      "sha256": "5b0c28bb0e5b53c1f3ece89daec0e1df179039b9e8876cdc4a93a25436804d76",
+      "git_blob_sha": "c3bff65c53bc49f7504f85aee9e8c7bd8416b9fc",
+      "destination": "curriculum/readings/"
+    },
+    {
+      "path": "docs/technical/HTTP基础.md",
+      "sha256": "8d461c66d62e4aec90293db0573049383d446dbfa7331c101208c58052949a0c",
+      "git_blob_sha": "7605426671245335d6d130a1f0823c676212c2cf",
+      "destination": "curriculum/readings/"
+    },
+    {
+      "path": "docs/technical/服务.md",
+      "sha256": "783ecf4b2d343b3ef46cb442fc80ea495cf7fef910262f4e473a739c37d18f87",
+      "git_blob_sha": "6dda0c6ab3c85a17bf32a44beb97847209bb958a",
+      "destination": "curriculum/readings/"
+    }
+  ]
+}

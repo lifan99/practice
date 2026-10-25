@@ -2,6 +2,10 @@
 
 中心问题：协程何时运行，取消后谁负责收尾？前置为异常、try/finally 与上下文管理器；目标是解释 coroutine、Task、await 的区别，并验证并发与资源释放。查阅 [Python 3.12 官方文档](https://docs.python.org/3.12/library/asyncio-task.html)。
 
+## 先读与观察
+
+阅读[异步、预算与取消](../readings/02_async.md)，依次运行 concurrency.py、timeouts.py、cancellation.py；讲解包含执行顺序与观察要点。随后在不同输入和自己设计的依赖上完成下方任务，区分阅读复现与独立表现。
+
 ## 活动与输出
 
 自行写一个可控依赖，记录进入、暂停、恢复、取消和退出事件。比较顺序等待和多个已调度任务的事件关系；先写出保证成立的先后关系，再运行验证。不要把一次观察到的完成顺序当作调度保证。

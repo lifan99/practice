@@ -2,6 +2,10 @@
 
 中心问题：请求成功、数据提交和进程存活分别意味着什么？前置为 F1；目标是能定义 API、写参数化 SQL、验证数据库约束和事务，并观察重启行为。HTTP 框架可选 FastAPI；参考其 [测试文档](https://fastapi.tiangolo.com/tutorial/testing/)。数据库先选 SQLite 或 PostgreSQL 一种；参考 [PostgreSQL 事务](https://www.postgresql.org/docs/18/tutorial-transactions.html)，具体行为以所选数据库验证。
 
+## 先读与观察
+
+先读[HTTP 与数据边界](../readings/03_http.md)、[服务准入与生命周期](../readings/04_service.md)，运行 http_contract.py 与 admission.py。它们补充接口与资源概念，不运行真实 HTTP 或数据库；SQL、迁移与事务仍需结合上面的官方资料及真实数据库实验，系统讲义待补建。
+
 ## 独立活动
 
 先做一个文档元数据小服务，不接模型。字段至少包含稳定 ID、owner、version、状态和更新时间；自行确定表结构、唯一约束与 API。

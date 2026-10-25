@@ -28,5 +28,8 @@ jobs:
         run: python -m pip check
       - name: Check Python syntax
         run: python -m compileall -q langchain_practice langgraph_practice rag_practice mcp_practice support tests
+      - name: Verify provided MVP demonstrations
+        run: python support/mvp_examples/run_all.py
+
       - name: Validate environment (exercise checks are opt-in)
         run: python -m pytest -q

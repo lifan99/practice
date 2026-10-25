@@ -14,6 +14,8 @@ LangChain、LangGraph、RAG 与 MCP 的独立编程练习。中文任务说明�
 
 [基础补学](curriculum/foundations/README.md)按需使用；[独立迁移任务](curriculum/README.md)逐步撤去函数骨架。项目与迁移部分提供任务契约和评审矩阵，尚无项目实现或预置自动验收器。
 
+[基础读物](curriculum/readings/README.md)已复用审核 MVP 的契约、异步、HTTP 与服务边界材料，配有[七个标准库示例](support/mvp_examples/README.md)。在根目录运行 `python support/mvp_examples/run_all.py`。SQL／容器系统讲义与模型原理仍待补建，范围见读物说明。
+
 ## 目录怎么找
 
 | 路径 | 内容 | 学习入口 |
@@ -47,7 +49,7 @@ python -m pytest -q
 
 PowerShell 使用 py -3.12 -m venv .venv 创建环境，使用 .venv\Scripts\Activate.ps1 激活。锁文件在 Python 3.12 / Linux 验证；requirements.txt 提供依赖范围，升级后需重新验证。
 
-依赖安装后练习可离线运行，无需 API Key。默认测试应为 **8 passed、练习全部 skipped**；CI 绿色表示环境和语法检查通过，不代表学生任务已完成。开启练习验收：
+依赖安装后练习可离线运行，无需 API Key。默认测试应为 **8 passed、练习全部 skipped**；CI 绿色表示环境、语法与提供好的离线示例检查通过，不代表学生任务已完成。开启练习验收：
 
 ```bash
 python -m pytest --run-exercises tests/langchain/test_level01_chain.py -q
