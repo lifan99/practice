@@ -1,93 +1,73 @@
-# RAG 分级练习
+# RAG 分级练习：先手写，再接框架
 
-学习路径分为 **基础 RAG → Advanced RAG → 工作流编排 / GraphRAG**。基础六级每次增加一个主要能力，进阶按依赖选择分支；所有代码都是待完成的练习，不附完整答案，不要求先部署数据库或真实模型服务。
+主路径调整为 **手写基础 → 手写进阶检索 → 框架适配 → LangGraph／GraphRAG 扩展**。RAG 是架构，学习核心机制无需先掌握 LangChain。任务提供中文契约、代码骨架和独立测试，核心实现留给学习者。
 
-## 从哪里开始
+## 第一阶段：框架无关的手写主线
 
-基础准备：Python 函数、字典、列表、Path 和类型标注。第 1–3 级无需 chat model；第 4 级开始需要 LangChain messages / Runnable，可先完成仓库的 LangChain 练习。整个基础路径不要求先学 LangGraph。下表是基础六级；进阶路径见后面的独立分组。
+进入 [core/README.md](core/README.md)。十级使用自定义 Document／Chunk／SearchHit 和普通 Python 回调；核心代码只依赖标准库，可选 NumPy。不允许用现成检索器代替指定算法。
 
-| 级别 | 本级要回答的问题 | 题目 | 代码 |
-| --- | --- | --- | --- |
-| 1 · 文档 | 如何保留内容与来源？ | [任务说明](lessons/01_documents.md) | [level01_documents.py](level01_documents.py) |
-| 2 · 切分 | 如何从字符窗口过渡到递归切分？ | [任务说明](lessons/02_chunking.md) | [level02_chunking.py](level02_chunking.py) |
-| 3 · 检索 | 如何只找证据、不生成答案？ | [任务说明](lessons/03_retrieval.md) | [level03_retrieval.py](level03_retrieval.py) |
-| 4 · 生成 | 给定证据后如何组织模型输入？ | [任务说明](lessons/04_generation.md) | [level04_generation.py](level04_generation.py) |
-| 5 · 组合 | 如何处理检索、生成与无证据分支？ | [任务说明](lessons/05_pipeline.md) | [level05_pipeline.py](level05_pipeline.py) |
-| 6 · 评估 | 如何测量召回并比较切分配置？ | [任务说明](lessons/06_evaluation.md) | [level06_evaluation.py](level06_evaluation.py) |
+| 级别 | 内容 | 任务 |
+| --- | --- | --- |
+| C1 | 原文读取、来源 | [说明](core/lessons/01_documents.md) |
+| C2 | 重叠窗口、段落聚合、原文偏移 | [说明](core/lessons/02_chunking.md) |
+| C3 | 余弦相似度、精确 Top-k | [说明](core/lessons/03_vectors.md) |
+| C4 | 自有索引、向量快照、检索前过滤 | [说明](core/lessons/04_index.md) |
+| C5 | 手写 BM25 | [说明](core/lessons/05_bm25.md) |
+| C6 | 普通函数问答、证据格式、空结果拒答 | [说明](core/lessons/06_pipeline.md) |
+| C7 | 手写 Recall、MRR、NDCG、固定集评估 | [说明](core/lessons/07_metrics.md) |
+| C8 | RRF、关键词与向量混合检索 | [说明](core/lessons/08_hybrid.md) |
+| C9 | 注入重排模型、完整证据 token 预算 | [说明](core/lessons/09_context.md) |
+| C10 | 多查询扩展、去重、调用上限、排名融合 | [说明](core/lessons/10_multiquery.md) |
 
-每级的说明给出前置知识、输入输出契约、边界情况、独立测试命令和完成标准。第 2 级有先后两道小题，第 6 级另有参数对比实验。
-
-## 如何运行
-
-先按照[总说明](../README.md)安装依赖，然后在仓库根目录执行：
-
-```bash
-# Start with level 1 only.
-python -m pytest --run-exercises tests/rag/test_level01_documents.py -q
-
-# After completing level 1, move to level 2.
-python -m pytest --run-exercises tests/rag/test_level02_chunking.py -q
-
-# Run all RAG acceptance checks when ready.
-python -m pytest --run-exercises tests/rag -q
-```
-
-初始 `NotImplementedError` 是待完成练习的标记。默认 `python -m pytest -q` 跳过全部练习，只验证运行环境，不能证明你已经完成某级。公开测试通过后，还应对照契约检查边界，并完成本级解释或观察任务。
-
-测试尽量隔离不同级别：第 3 级直接使用提供好的 Document，第 4 级直接使用给定证据，第 5 级用替代生成函数检查组合逻辑，第 6 级用固定 retriever 检查指标。这样某一级的失败不会迫使你同时调试整条链。最终串联时仍需完成前面的组件。
-
-## 数据与范围
-
-- [data/](data/) 包含三份短 Markdown 文档；第 1 级只读取 `.md` 文件。
-- [evaluation_queries.json](data/evaluation_queries.json) 给出第 6 级组件实验的问题与相关来源，加载后把来源列表转成 set。
-- `practice_support.KeywordEmbeddings` 是本地词频向量；`FakeListChatModel` 返回预设文本。两者用于流程验证，不代表真实语义检索或生成质量。
-- 通过 context 传递 source 不证明模型实际引用了它，也不证明回答正确。基础题仅对空检索结果实现确定性拒答。
-
-旧的 `ex01_index.py`、`ex02_qa.py` 保留为导入兼容入口。请修改相应的 `levelXX_*.py`，不要在旧文件重复实现。
-
-## Advanced RAG：改进候选与上下文
-
-先完成 Level 6，建立固定评估集后再加组件。新增机制不保证提升质量，应与基础检索在相同数据和预算下比较。
-
-| 级别 | 能力与前置 | 题目 | 代码 |
-| --- | --- | --- | --- |
-| 7 · 混合检索 | 两路召回、RRF 排名融合；前置 Level 3、6 | [任务说明](lessons/07_hybrid.md) | [level07_hybrid.py](level07_hybrid.py) |
-| 8 · 重排与预算 | 注入重排评分器、选择完整上下文块；前置 Level 3、6，可接 Level 7 | [任务说明](lessons/08_reranking.md) | [level08_reranking.py](level08_reranking.py) |
-
-## LangGraph RAG：管理执行流程
-
-| 级别 | 能力与前置 | 题目 | 代码 |
-| --- | --- | --- | --- |
-| 9 · 可纠正检索 | 评估证据、改写 query、有界重试与拒答；前置 Level 5、6 和 LangGraph 练习 | [任务说明](lessons/09_workflow.md) | [level09_workflow.py](level09_workflow.py) |
-
-本级的图节点是执行步骤，例如 retrieve、grade、rewrite。它不要求知识图谱；本题提供的是可纠正检索工作流，不把固定流程测试等同于自主 agent 能力。
-
-## GraphRAG：利用实体和关系检索
-
-| 级别 | 能力与前置 | 题目 | 代码 |
-| --- | --- | --- | --- |
-| 10 · 知识图谱 | 有向事实、来源、去重与规范化；前置文档和有向图基础 | [任务说明](lessons/10_knowledge_graph.md) | [level10_knowledge_graph.py](level10_knowledge_graph.py) |
-| 11 · 图证据检索 | 有界多跳路径、原文证据回溯、带关系的生成输入；前置 Level 10，建议 Level 4、6 | [任务说明](lessons/11_graph_retrieval.md) | [level11_graph_retrieval.py](level11_graph_retrieval.py) |
-
-这条分支不依赖 Level 9。这里图节点是实体，边是带来源的关系。使用独立的 [graph_data/](graph_data/) 样本，先隔离图建模和局部检索；人工事实不等于完成了自动实体抽取。
-
-本项目目前覆盖 GraphRAG 的局部图检索教学路径。微软完整 GraphRAG 还涉及社区层级、摘要和 global search；这些属于后续项目，不能把本练习当成完整复刻。[官方概览](https://microsoft.github.io/graphrag/)
-
-## 进阶如何验收
-
-每级仍有独立代码、契约和测试，可以只运行当前级：
+C1–C7建立机制和评估基线；C8–C10再增加检索策略。embedding、生成、分词和重排模型通过接口注入，不要求训练模型。完成后做[综合对比实验](core/experiments/README.md)，说明复杂度、失败样本和实际观测结果。
 
 ```bash
-python -m pytest --run-exercises tests/rag/test_level07_hybrid.py -q
-python -m pytest --run-exercises tests/rag/test_level09_workflow.py -q
-python -m pytest --run-exercises tests/rag/test_level10_knowledge_graph.py -q
-python -m pytest --run-exercises tests/rag/test_level11_graph_retrieval.py -q
+# Minimal dependencies for the core track only.
+python -m pip install -r requirements-rag-core.txt
+python -m pytest --run-exercises tests/rag/core/test_core01_documents.py -q
+python -m pytest --run-exercises tests/rag/core -q
 ```
 
-离线测试使用固定 retriever、评分器、grader、rewriter 和 generator，验证排序、数据流、来源与终止条件。它们不证明真实模型具备语义重排、可靠的证据判断、实体抽取或事实推理能力。
+只安装最小依赖时不要运行其他主题测试；原有完整环境也可直接运行。依赖安装后核心测试离线，无需 API Key。
 
-基础与进阶都不增加 API Key 要求，也没有引入 Neo4j、Elasticsearch 或额外模型下载。真实服务是替换依赖后的独立实验。
+## 第二阶段：LangChain 适配与框架对照
 
-## 后续项目方向
+进入 [adapters/README.md](adapters/README.md)，完成 Chunk 与 LangChain Document 的双向转换、Runnable retriever 和 chat model 的普通回调适配。复用手写主线的同一问答接口，检查 ID、来源、偏移和消息传递，再替换模型或向量存储。
 
-尚未提供实现与验收的方向：多查询改写与融合、父子块检索、结构化文档与表格处理、实体抽取与别名合并、图与向量候选融合、社区摘要与全局检索、持久化与增量更新。每次选一个明确问题，记录改动前后的检索质量、证据完整性、调用次数与成本，不把组件数量当成能力等级。
+```bash
+python -m pip install -r requirements-lock.txt
+python -m pytest --run-exercises tests/rag/adapters -q
+```
+
+原有文件和测试入口继续保留，已经开始的实现无需迁移。下面旧 L1–L8 现在作为后续框架对照，原编号不等同于新 C1–C10：
+
+| 原编号 | 定位 | 任务／代码 |
+| --- | --- | --- |
+| L1 | LangChain Document 文件读取 | [说明](lessons/01_documents.md)／[代码](level01_documents.py) |
+| L2 | 窗口对照与递归 splitter | [说明](lessons/02_chunking.md)／[代码](level02_chunking.py) |
+| L3 | InMemoryVectorStore | [说明](lessons/03_retrieval.md)／[代码](level03_retrieval.py) |
+| L4 | messages／模型输入 | [说明](lessons/04_generation.md)／[代码](level04_generation.py) |
+| L5 | Runnable 问答组合 | [说明](lessons/05_pipeline.md)／[代码](level05_pipeline.py) |
+| L6 | source 级召回评估 | [说明](lessons/06_evaluation.md)／[代码](level06_evaluation.py) |
+| L7 | 双路 Runnable 与 RRF | [说明](lessons/07_hybrid.md)／[代码](level07_hybrid.py) |
+| L8 | 重排回调与字符预算 | [说明](lessons/08_reranking.md)／[代码](level08_reranking.py) |
+
+旧测试示例：`python -m pytest --run-exercises tests/rag/test_level03_retrieval.py -q`。ex01_index.py、ex02_qa.py仍指向旧练习；原有前置笔记也服务于旧 Document 题。新主线保留原文偏移，旧读取题清理首尾空白，两者契约不要混用。新 C7 是 chunk 级指标，旧 L6 是 source 级指标；新 C9 计完整证据的 token，旧 L8 计正文字符。
+
+## 第三阶段：工作流与知识图谱
+
+| 分支 | 任务 | 前置 |
+| --- | --- | --- |
+| LangGraph RAG | [L9：证据评估、改写、有界纠正检索](lessons/09_workflow.md) | 手写流程与评估、LangGraph 基础；此分支使用 Document／Runnable |
+| GraphRAG | [L10：事实图建模](lessons/10_knowledge_graph.md) | 有向图、来源追踪；本级自身使用 dataclass |
+| GraphRAG | [L11：局部多跳检索与原文证据](lessons/11_graph_retrieval.md) | L10；原文适配仍使用 LangChain Document |
+
+工作流图的节点是执行步骤，知识图谱的节点是实体。静态回调不等于自主规划；GraphRAG 这里只覆盖局部图检索，不包含自动实体抽取、社区摘要和全局检索。
+
+## 验收边界
+
+默认 pytest 跳过学生练习，只检查环境；--run-exercises 才执行验收。TODO 初始失败是预期现象；公开测试通过后仍需解释机制、增加反例并完成实验。
+
+[data/](data/) 的三份 Markdown 与旧 [evaluation_queries.json](data/evaluation_queries.json) 适合组件连通性实验；[graph_data/](graph_data/) 服务图检索分支。关键词向量和固定模型回复不证明真实语义质量。手写主线需建立自己的 chunk 级证据标签，不直接把旧 source 标签当作 chunk_id。
+
+真实模型、语义重排、持久化数据库、增量更新、部署、权限、HNSW／IVF 均可作为后续项目。增加组件不保证质量提升；用固定问题集报告质量、证据支持、延迟、调用次数与成本。

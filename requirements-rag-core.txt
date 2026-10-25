@@ -1,0 +1,3 @@
+# The core track uses the Python standard library; NumPy is optional.
+# Only the public test runner is needed for this minimal installation.
+pytest>=8,<10
