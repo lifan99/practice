@@ -2,7 +2,7 @@
 
 [![Practice environment](https://github.com/lifan99/practice/actions/workflows/ci.yml/badge.svg)](https://github.com/lifan99/practice/actions/workflows/ci.yml)
 
-LangChain、LangGraph、RAG 与 MCP 的独立编程练习。中文任务说明，英文代码与类型标注；提供函数骨架和公开测试，核心实现保留 TODO，不附完整答案。前置为 Python 函数、列表、字典、异常与虚拟环境，异步章节另需 async/await。
+面向 AI 应用开发学习者的 LangChain、LangGraph、RAG 与 MCP 独立编程练习。中文任务说明，英文代码与类型标注；提供函数骨架和公开测试，核心实现保留 TODO，不附完整答案。前置为 Python 函数、列表、字典、异常与虚拟环境，异步章节另需 async/await。
 
 ## 从哪里开始
 

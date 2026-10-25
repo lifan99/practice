@@ -52,4 +52,4 @@ MVP 的 request_id 是调用方标识，不是已认证用户身份。知识库 
 
 可以复用准入思路、错误分层、受控依赖与事件探针。字段、容量值和HTTP映射要按知识库契约重新确定。先做 [P2](../../projects/knowledge-assistant/02_service.md) 的API与持久化，再逐步加入版本、权限、并发与容器。
 
-本次迁移不提供数据库、持久化索引、认证服务或容器实现。涉及外部副作用的恢复继续用 [T3](../transfer/03_recovery.md)训练；独立任务仍由学习者设计和验证。
+这些示例覆盖本地准入与资源生命周期；数据库、持久化索引、身份认证与容器部署由 [P2](../../projects/knowledge-assistant/02_service.md) 的独立任务继续训练。涉及外部副作用的恢复见 [T3](../transfer/03_recovery.md)，需要自行设计并验证。

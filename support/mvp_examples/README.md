@@ -1,6 +1,6 @@
 # 从审核 MVP 复用的离线示例
 
-来源为用户的 [多 Agent 审核 MVP](https://github.com/lifan99/utility/tree/51d9f356e2a3c5bf27bff93aff2a7cf523a87232)。选取标准库示例与引用校验片段，调整路径与英文代码说明，保留原来的行为断言；来源版本和哈希见 [SOURCES.json](SOURCES.json)。这些是提供好的讲解示例，独立作业仍由学习者完成。
+示例改编自[多 Agent 审核 MVP](https://github.com/lifan99/utility/tree/51d9f356e2a3c5bf27bff93aff2a7cf523a87232)，用于观察依赖替换、引用校验、异步执行与服务边界。来源版本和哈希见 [SOURCES.json](SOURCES.json)。这些是配套讲解示例，独立作业仍由学习者完成。
 
 在仓库根目录使用 Python 3.12，无需安装 MVP、模型 Key、FastAPI 或其他第三方依赖：
 
@@ -24,4 +24,4 @@ python support/mvp_examples/cancellation.py
 
 http_contract.py 不发送 HTTP，admission.py 不启动 API 服务。它们的 409／429／502 等是原 MVP 的设计选择；不可直接当作知识库项目的通用协议。示例的活动去重不跨进程，不是持久化幂等；超时示例的短时限仅为观察取消，不是产品性能要求。
 
-现有 MVP 的客户端依赖 HTTPX 0.28 系列，课程 MCP 传输使用 httpx2；本次仅复用标准库示例，不合并两套依赖。需要运行原服务时使用 MVP 自己的环境与说明。
+原 MVP 的客户端依赖 HTTPX 0.28 系列，课程 MCP 传输使用 httpx2；这里的标准库示例可独立运行。运行原服务时，请使用该项目的独立环境与说明。

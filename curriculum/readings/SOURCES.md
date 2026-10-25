@@ -1,6 +1,6 @@
-# MVP 材料复用记录
+# MVP 材料来源与改编说明
 
-本次按用户要求，从本人的多 Agent 审核 MVP 选取通用教材与离线示例，改编为本课程的基础阅读。公开来源：[lifan99/utility，51d9f356](https://github.com/lifan99/utility/tree/51d9f356e2a3c5bf27bff93aff2a7cf523a87232)。本地源项目修订为8d2e092f；下面10份选中文件的内容均与所列公开版本的 blob 哈希一致，版本与原始文件 SHA-256 记录在 [SOURCES.json](../../support/mvp_examples/SOURCES.json)。
+本课程的基础读物与离线示例改编自[多 Agent 审核 MVP（lifan99/utility，51d9f356）](https://github.com/lifan99/utility/tree/51d9f356e2a3c5bf27bff93aff2a7cf523a87232)。下表列出10份来源文件及其教学用途。源材料的本地修订为8d2e092f，所选文件与上述公开版本的 blob 哈希一致；版本与原始文件 SHA-256 记录在 [SOURCES.json](../../support/mvp_examples/SOURCES.json)。
 
 | 原始文件 | 在本课程中的用途 |
 | --- | --- |
@@ -21,7 +21,7 @@
 
 原始材料中的参考答案、个人学习记录和完整项目实现不在这份复用清单内。讲解示例是提供好的阅读材料，不提供本课程独立迁移作业或知识库项目的完整解答。面试资料不得上传。
 
-原服务的 HTTPX 0.28 依赖与课程 MCP 使用的 httpx2 分开维护。本次不改动 MVP，也不把 review_system、Streamlit、供应商配置或整个 study/ 合并进课程；示例仅用 Python 3.12 标准库。
+原服务的 HTTPX 0.28 依赖与课程 MCP 使用的 httpx2 分开维护。课程中的改编示例仅使用 Python 3.12 标准库，可独立于原服务、Streamlit 与供应商配置运行。
 
 ## 验证与局限
 
