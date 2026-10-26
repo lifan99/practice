@@ -47,4 +47,4 @@ python -m pytest --run-exercises tests/rag/core -q
 - 每级需提交实现、测试结果，以及任务末尾要求的解释或实验记录。算法题另说明时间／空间复杂度；不以测试数量或组件数量代表模型质量。
 - 允许调用模型或现成中文分词器，不要求重写 Transformer、embedding 训练或 cross-encoder。HNSW/IVF 属于完成精确检索后的选修。
 
-边实现边按[实验规范](experiments/README.md)建立基线与增量对比。完成基础后进入[项目主线](../../projects/README.md)；需要框架时选择 [LangChain 适配层](../langchain/README.md)。[RAG 总路径](../README.md)列出各分支与依赖。
+边实现边按[实验规范](experiments/README.md)建立基线与增量对比。完成基础后进入[项目主线](../../projects/README.md)；需要框架时选择 [LangChain L11 桥接](../../langchain_practice/lessons/11_rag_bridge.md)。[RAG 总路径](../README.md)列出各分支与依赖。

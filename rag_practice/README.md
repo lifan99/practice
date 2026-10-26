@@ -1,44 +1,40 @@
 # RAG 学习路径
 
-按能力分为手写核心、LangChain 集成、工作流和知识图谱四条路径。主修顺序是**手写基线 → 项目服务 → 评估优化**；框架与图相关路径按项目需求选择。每条路径都有独立的 README、lessons/ 和 exercises/，测试在 tests/rag/ 的同名目录。没有按版本并列的重复入口。
+RAG 机制沿 **手写核心 → 项目服务 → 评估优化** 一条主线学习。读取、切分、检索、问答与指标只在 core/ 实现一套；LangChain 的组件和类型适配集中在 [langchain_practice/](../langchain_practice/README.md)。
 
-| 路径 | 目标 | 前置 | 入口 |
+| 定位 | 内容 | 前置 | 入口 |
 | --- | --- | --- | --- |
-| core/ | 手写切分、余弦、精确索引、BM25、问答、指标、融合与预算，共10级 | Python；向量／词频基础逐级引入 | [开始学习](core/README.md) |
-| langchain/ | 用 Document、Runnable、向量存储接入框架，并桥接核心接口，共9级 | 核心问答接口；按需学习框架类型与桥接 | [任务目录](langchain/README.md) |
-| workflows/ | 用 LangGraph 编排证据评估、改写、重试与拒答 | RAG 流程、评估与 LangGraph 基础 | [任务目录](workflows/README.md) |
-| graph/ | 手写事实图、局部多跳路径，并回溯原文证据，共2级 | 字典、集合、有向图 | [任务目录](graph/README.md) |
+| 主线：core/ | 手写文档读取、切分、余弦、精确索引、BM25、问答、指标、融合与预算，共10级 | Python；向量／词频基础逐级引入 | [开始学习](core/README.md) |
+| 选修：workflows/ | 用 LangGraph 编排证据评估、改写、重试与拒答 | 核心问答与评估、LangGraph 基础 | [纠正检索工作流](workflows/README.md) |
+| 选修：graph/ | 手写事实图、局部多跳路径，并回溯原文证据，共2级 | 字典、集合、有向图 | [GraphRAG](graph/README.md) |
 
-core/ 无需先学 LangChain。workflows/ 的图节点是执行步骤；graph/ 的图节点是实体，两种分支可独立学习。GraphRAG 仅覆盖局部图检索教学范围，不含自动实体抽取、社区摘要与全局检索。
+core/ 无需先学框架。workflows/ 的图节点是执行步骤；graph/ 的图节点是实体。两项专题可独立选择：前者学习检索流程控制，后者学习关系查询。GraphRAG 目前覆盖局部图检索，不含自动实体抽取、社区摘要与全局检索。
 
-## 前两个练习的知识准备
+## 从哪里开始
 
-[C1／C2 前置知识](knowledge.md)集中讲解数据类、Path、文件类型、UTF-8、字符串空白、列表与排序、切片、循环控制和正则匹配。按当前练习选择阅读，再回到任务实现；文中的小例子可独立运行，不包含练习的完整解答。
+先读 [C1／C2 前置知识](knowledge.md)，按当前练习补充数据类、Path、文件类型、UTF-8、字符串空白、列表与排序、切片、循环控制和正则匹配。小例子可独立运行，不附练习完整解答。
 
-## 项目驱动的顺序
+C1–C4、C6–C7 后开始 [P1 基线项目](../projects/knowledge-assistant/01_baseline.md)，加入 C5 做词法基线。服务化与持久化进入 [P2](../projects/knowledge-assistant/02_service.md)；按失败归因选择 C8–C10，在 [P3](../projects/knowledge-assistant/03_evaluation.md)验证收益。不必等所有进阶题完成才做首轮评估。
 
-C1–C4、C6–C7 后开始 [P1](../projects/knowledge-assistant/01_baseline.md)，加入 C5 做词法基线。不要等全部进阶题结束才做首轮评估。服务化与持久化进入 [P2](../projects/knowledge-assistant/02_service.md)；按失败归因选择 C8–C10，在 [P3](../projects/knowledge-assistant/03_evaluation.md)验证收益。
-
-需要框架时做 LangChain 类型适配与 L9 桥接，重复机制练习按该路径规则选做；需要可恢复流程或关系查询时再进入 workflows/ 或 graph/。完整先修与迁移要求见[课程主线](../curriculum/README.md)。
+项目需要 LangChain 时，在掌握消息与 Runnable 后完成 [LangChain L11 桥接](../langchain_practice/lessons/11_rag_bridge.md)，将已有 C6 接到框架边界。需要检索纠正、恢复或关系查询时，再选择 workflows/ 或 graph/。完整先修与迁移要求见[课程主线](../curriculum/README.md)。
 
 ## 从手写索引到 Milvus
 
-项目向量存储主线为[Milvus Standalone](../projects/knowledge-assistant/milvus.md)。先完成核心索引、指标与 P1，再在 P2 的独立项目环境接入；同一批 chunks、向量与候选范围用于精确检索对照。权限、版本、删除、持久化与服务重启按接入任务验收，core 本身保持纯 Python 数据结构与普通函数。
+项目向量存储主线为 [Milvus Standalone](../projects/knowledge-assistant/milvus.md)。完成核心索引、指标与 P1 后，在 P2 的独立项目环境接入；使用相同 chunks、向量与候选范围对照精确检索。权限、版本、删除、持久化与服务重启按接入任务验收，core 本身保持纯 Python 数据结构与普通函数。
 
-## 文件约定
+## 文件怎么找
 
 ```text
 rag_practice/
 ├── README.md
-├── knowledge.md   # C1／C2 的前置知识与独立小示例
-├── core/          # 手写算法与普通函数接口
-├── langchain/     # 框架组件和输入输出桥接
-├── workflows/     # 纠正检索工作流
-├── graph/         # 事实图、图检索及其 data/
-└── data/          # 文本语料与 source 级评估样例
+├── knowledge.md   # C1／C2 前置知识与独立小示例
+├── core/          # 唯一机制主线：types.py、lessons/、exercises/、experiments/
+├── workflows/     # 选修：纠正检索工作流
+├── graph/         # 选修：事实图、多跳检索及其 data/
+└── data/          # 三份 Markdown 小语料
 ```
 
-在各分支内，lessons/ 放任务契约，exercises/ 放实现骨架；core/types.py 是共享数据结构，core/experiments/ 是综合实验要求。只修改当前任务的 exercises/ 文件，按说明运行对应测试。
+lessons/ 放任务契约，exercises/ 放代码骨架；core/types.py 定义共享数据结构，core/experiments/ 放综合实验要求。测试在 tests/rag/ 的对应目录。阅读当前任务后修改对应 exercises/ 文件，并单独运行该级测试。
 
 ## 验收入口
 
@@ -46,17 +42,16 @@ rag_practice/
 
 ```bash
 python -m pytest --run-exercises tests/rag/core -q
-python -m pytest --run-exercises tests/rag/langchain -q
 python -m pytest --run-exercises tests/rag/workflows -q
 python -m pytest --run-exercises tests/rag/graph -q
 ```
 
-只学 core/ 可仅安装 requirements-rag-core.txt，然后只运行 tests/rag/core。没有 --run-exercises 时学生任务被跳过；默认环境检查通过不证明练习完成。
+只学 core/ 可仅安装 requirements-rag-core.txt，并只运行 tests/rag/core。没有 --run-exercises 时练习被跳过；默认环境检查通过不证明练习完成。框架桥接的测试入口见 LangChain L11。
 
-## 数据与评估口径
+## 数据与评估
 
-[data/](data/) 的三份 Markdown 和 [evaluation_queries.json](data/evaluation_queries.json) 用于组件连通性与 source 级评估；[graph/data/](graph/data/) 用于事实图练习。小语料、词频向量和固定模型回复不能证明真实质量。
+[data/](data/) 的三份 Markdown 用于组件连通性；[graph/data/](graph/data/) 用于事实图练习。小语料、词频向量和固定模型回复不能证明真实质量。
 
-手写核心保留原文字符偏移，并使用 chunk 级标签；LangChain 文档读取题先清理首尾空白，其评估题按 source 计召回。二者是不同的处理约定，跨接口对照前先统一正文与标签口径。字符预算和 token 预算也应分别记录。
+核心保留原文字符偏移，以 chunk_id 标记相关性；桥接沿用正文、ID、来源与偏移，不额外清理原文。切分变化后需重新核对标签；字符预算与 token 预算分别记录。
 
-从最小闭环就开始[基线与对比实验](core/experiments/README.md)，报告证据支持、失败样本、延迟和成本。持久化、更新删除、权限和部署已纳入必修项目 P2 的规格与验收矩阵，需学习者独立实现；ANN 继续作为容量需求出现后的选修。
+从最小闭环就开始[基线与对比实验](core/experiments/README.md)，报告证据支持、失败样本、延迟和成本。持久化、更新删除、权限与部署按 P2 的规格独立实现；ANN 在容量需求出现后选修。

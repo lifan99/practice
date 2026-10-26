@@ -5,13 +5,14 @@
 | 目录 | 对应内容 | 验收命令 |
 | --- | --- | --- |
 | environment/ | 依赖、离线设施、流接口和MCP传输 | python -m pytest tests/environment -q |
-| langchain/ | LangChain 1–10级 | python -m pytest --run-exercises tests/langchain -q |
+| langchain/ | LangChain 1–10级与 L11 RAG 桥接 | python -m pytest --run-exercises tests/langchain -q |
 | langgraph/ | LangGraph 1–10级 | python -m pytest --run-exercises tests/langgraph -q |
 | rag/core/ | 手写核心10级与串联检查 | python -m pytest --run-exercises tests/rag/core -q |
-| rag/langchain/ | 框架集成9级 | python -m pytest --run-exercises tests/rag/langchain -q |
 | rag/workflows/ | 纠正检索工作流 | python -m pytest --run-exercises tests/rag/workflows -q |
 | rag/graph/ | 图建模与多跳检索 | python -m pytest --run-exercises tests/rag/graph -q |
 | mcp/ | MCP 1–10级 | python -m pytest --run-exercises tests/mcp -q |
+
+RAG 机制只在 rag/core/ 验收一套实现；langchain/test_level11_rag_bridge.py 仅验证类型、消息与调用边界的适配。
 
 每级统一使用 test_levelNN_主题.py，可单独运行；同一目录的集成测试使用 test_integration.py。pytest.ini 使用 importlib 导入模式，允许不同路径有同名测试文件。conftest.py 保留练习开关；rag/core/conftest.py 提供小样本构造器。
 

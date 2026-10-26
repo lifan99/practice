@@ -153,4 +153,4 @@ python -m pytest --run-exercises tests/rag/core/test_level02_chunking.py -q
 - 字符预算为何不能直接保证模型 token 预算？
 - 时间和空间开销中，查找边界与复制输出正文分别占多少？重叠增加时有什么变化？
 
-公开测试验证本级机制；切分参数是否改善实际检索，需要在后续固定数据的评估中比较。框架 splitter 的类型与行为另见 [LangChain 切分练习](../../langchain/lessons/02_chunking.md)。下一步：[C3：向量与精确检索](03_vectors.md)。
+公开测试验证本级机制；切分参数是否改善实际检索，需要在后续固定数据的评估中比较。下一步：[C3：向量与精确检索](03_vectors.md)。

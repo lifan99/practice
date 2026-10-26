@@ -1,6 +1,6 @@
 # LangChain 分级练习
 
-从组件组合逐步进入原生 agent 和异步运行，分成 **基础两级 + 进阶八级**。每级都有任务说明、代码骨架与独立验收；保留 TODO，不附完整答案。整个路径使用已锁定依赖，无需 API Key。
+从组件组合逐步进入原生 agent 和异步运行，分成 **基础两级 + 进阶八级 + RAG 桥接一级**。每级都有任务说明、代码骨架与独立验收；保留 TODO，不附完整答案。整个路径使用已锁定依赖，无需 API Key。
 
 ## 学习路径
 
@@ -16,14 +16,15 @@
 | 8 · 可靠性 | 超时重试、fallback、工具错误中间件 | [说明](lessons/08_reliability.md) | [level08_reliability.py](exercises/level08_reliability.py) |
 | 9 · 异步并发 | 最大并发、结果顺序、单项失败与取消 | [说明](lessons/09_async.md) | [level09_async.py](exercises/level09_async.py) |
 | 10 · 流式输出 | 同步/异步增量文本、异常、提前关闭 | [说明](lessons/10_streaming.md) | [level10_streaming.py](exercises/level10_streaming.py) |
+| 11 · RAG 桥接 | 核心 Chunk、消息与 Runnable 的边界适配 | [说明](lessons/11_rag_bridge.md) | [level11_rag_bridge.py](exercises/level11_rag_bridge.py) |
 
-各级编号表示本主题依赖关系，主修项目不要求全部顺序完成。先做 Level 1–2；涉及工具时补 4–6，进入服务阶段按所用能力补 8–10；Level 3 与 7 按需求选择。按依赖选择分支：Level 3 依赖 Level 1，Level 4 依赖 Level 2，Level 5–7 依次衔接；Level 8 需要 Runnable 与 agent 基础；Level 9–10 还需要 async/await 和迭代器。
+各级编号表示本主题依赖关系，主修项目不要求全部顺序完成。先做 Level 1–2；涉及工具时补 4–6，进入服务阶段按所用能力补 8–10；Level 3 与 7 按需求选择。按依赖选择分支：Level 3 依赖 Level 1，Level 4 依赖 Level 2，Level 5–7 依次衔接；Level 8 需要 Runnable 与 agent 基础；Level 9–10 还需要 async/await 和迭代器。Level 11 只需 Level 1／3 的消息与 Runnable 基础、RAG C6，可独立选做，无需先完成其余进阶级别。
 
 每级完成标准是：公开测试通过，能解释本级数据流与失败分支，并按说明完成观察任务。测试只覆盖公开契约的一部分；不要用硬编码结果代替实现。
 
 ## 独立能力与项目迁移
 
-组件任务保留指定框架接口，用于验证原生行为。异步能力另用 [T2](../curriculum/transfer/02_async.md)在标准库层独立设计；已完成手写 RAG 的学习者优先做 [RAG 桥接](../rag_practice/langchain/README.md)，减少重复实现。按[课程主线](../curriculum/README.md)将本主题用于项目，不以所有 API 题通过作为开始项目的条件。
+组件任务保留指定框架接口，用于验证原生行为。异步能力另用 [T2](../curriculum/transfer/02_async.md)在标准库层独立设计；已完成手写 RAG 的学习者优先做 [Level 11 RAG 桥接](lessons/11_rag_bridge.md)，复用已有核心函数。按[课程主线](../curriculum/README.md)将本主题用于项目，不以所有 API 题通过作为开始项目的条件。
 
 ## 如何运行
 
@@ -50,7 +51,7 @@ python -m pytest --run-exercises tests/langchain -q
 
 ## 和其他练习如何衔接
 
-基础 Level 1–2 可以支持 RAG 的框架集成；Level 5–8 可以支持多工具检索应用。需要自己设计状态、分支和恢复流程时，再学习 [LangGraph](../langgraph_practice/README.md) 与 [RAG 纠正检索](../rag_practice/workflows/lessons/01_corrective.md)。
+RAG 的读取、切分、检索与指标在 [RAG 手写核心](../rag_practice/core/README.md)学习；本主题只在 Level 11 接入框架边界。Level 5–8 可以支持多工具检索应用。需要自己设计状态、分支和恢复流程时，再学习 [LangGraph](../langgraph_practice/README.md) 与 [RAG 纠正检索](../rag_practice/workflows/lessons/01_corrective.md)。
 
 ## 后续项目
 

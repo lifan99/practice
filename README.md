@@ -10,7 +10,7 @@
 
 - 学机制：先做 RAG C1–C4、C6–C7，P1 对照时补 C5；C8–C10 由失败分析决定。
 - 做工程：P2 使用 [Milvus](projects/knowledge-assistant/milvus.md)提供向量存储，补齐 API、业务数据库、身份边界、版本更新、进程重启和容器；P3 用质量、成本与延迟验证改进。
-- 学框架：选择项目实际需要的 LangChain、LangGraph、MCP 或 GraphRAG 单元；重复机制题可按迁移证据跳过。
+- 学框架：选择项目实际需要的 LangChain、LangGraph、MCP 或 GraphRAG 单元，框架适配复用已有 RAG 实现。
 
 [基础补学](curriculum/foundations/README.md)按需使用；[独立迁移任务](curriculum/README.md)逐步撤去函数骨架。项目与迁移部分提供任务契约和评审矩阵，尚无项目实现或预置自动验收器。
 
@@ -22,17 +22,16 @@
 | --- | --- | --- |
 | curriculum/ | 主修／选修、基础补学、迁移与学习证据 | [学习顺序](curriculum/README.md) |
 | projects/ | 同一知识库项目的基线、服务、评估与专题任务 | [项目交付](projects/README.md) |
-| langchain_practice/ | 十级组件组合、工具、agent、记忆、可靠性、异步与流 | [LangChain](langchain_practice/README.md) |
+| langchain_practice/ | 十级框架训练与一级 RAG 桥接 | [LangChain](langchain_practice/README.md) |
 | langgraph_practice/ | 十级状态、分支、并行、checkpoint、中断与恢复 | [LangGraph](langgraph_practice/README.md) |
 | rag_practice/core/ | 十级手写 RAG：切分、余弦、索引、BM25、评估与融合 | [RAG 手写核心](rag_practice/core/README.md) |
-| rag_practice/langchain/ | 九级框架集成：Document、向量存储、Runnable 与桥接 | [RAG 的 LangChain 集成](rag_practice/langchain/README.md) |
 | rag_practice/workflows/ | LangGraph 纠正检索工作流 | [RAG 工作流](rag_practice/workflows/README.md) |
 | rag_practice/graph/ | 事实图建模、多跳路径、来源证据 | [GraphRAG](rag_practice/graph/README.md) |
 | mcp_practice/ | 十级协议、server/client、传输、并发与多服务 | [MCP](mcp_practice/README.md) |
 | tests/ | 按主题对应的练习验收；environment/ 为环境检查 | [测试说明](tests/README.md) |
 | support/ | 跨主题使用的离线测试设施 | [离线模型与向量](support/offline.py) |
 
-主题目录统一约定：**lessons/ 读题，exercises/ 写代码，support/ 使用提供好的测试设施，data/ 放样本**。每条路径的 README 只负责导航、依赖与运行入口。RAG 先手写核心，再选择框架集成、工作流或知识图谱；不要求先学 LangChain 才能开始 RAG。
+主题目录统一约定：**lessons/ 读题，exercises/ 写代码，support/ 使用提供好的测试设施，data/ 放样本**。每条路径的 README 只负责导航、依赖与运行入口。RAG 机制在 core/ 学习；框架接口在 langchain_practice/ 学习。工作流与知识图谱按项目需求选修，RAG 无需先学 LangChain。
 
 ## 安装与运行
 
@@ -56,7 +55,6 @@ python -m pytest --run-exercises tests/langchain/test_level01_chain.py -q
 python -m pytest --run-exercises tests/langchain -q
 python -m pytest --run-exercises tests/langgraph -q
 python -m pytest --run-exercises tests/rag/core -q
-python -m pytest --run-exercises tests/rag/langchain -q
 python -m pytest --run-exercises tests/rag/workflows -q
 python -m pytest --run-exercises tests/rag/graph -q
 python -m pytest --run-exercises tests/mcp -q

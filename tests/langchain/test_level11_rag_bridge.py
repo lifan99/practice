@@ -5,7 +5,12 @@ from langchain_core.documents import Document
 from langchain_core.messages import AIMessage
 from langchain_core.runnables import RunnableLambda
 
-from rag_practice.langchain.exercises.level09_bridge import as_core_chat_model, as_core_retriever, from_langchain, to_langchain
+from langchain_practice.exercises.level11_rag_bridge import (
+    as_core_chat_model,
+    as_core_retriever,
+    from_langchain,
+    to_langchain,
+)
 from rag_practice.core.types import Chunk
 
 pytestmark = pytest.mark.exercise

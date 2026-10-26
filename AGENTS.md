@@ -21,4 +21,4 @@
 
 - 按主题与学习顺序组织内容，不创建“新／旧”或重复兼容入口。
 - lessons/ 放任务说明，exercises/ 放练习骨架，support/ 放提供好的设施，data/ 放样本；测试在 tests/ 的对应主题目录。
-- RAG 按 core、langchain、workflows、graph 分类，README 负责导航，不重复堆放任务正文。
+- RAG 机制只在 rag_practice/core/ 保留一套练习；LangChain 组件与 RAG 适配放在 langchain_practice/。rag_practice/workflows/ 与 graph/ 是按需专题扩展，README 负责导航，不重复堆放任务正文。

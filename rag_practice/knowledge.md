@@ -8,7 +8,7 @@
 | C2-A 窗口切分 | 字符与切片、循环控制、边界与不变量、输出开销 | [C2-A 任务](core/lessons/02_chunking.md#a重叠窗口) |
 | C2-B 段落聚合 | 原文位置、正则匹配、连续区间预算 | [C2-B 任务](core/lessons/02_chunking.md#b段落聚合) |
 
-本页使用手写核心的 `Document.text` 和 `Chunk`。[LangChain 路径](langchain/README.md)采用另一套 Document 接口；阅读代码前先确认导入的类型。下列 Python 代码块可在仓库根目录使用 Python 3.12 单独运行，不需要模型、数据库或网络。
+本页使用手写核心的 `Document.text` 和 `Chunk`。框架类型转换集中在 [LangChain L11 桥接](../langchain_practice/lessons/11_rag_bridge.md)，使用同一套正文与偏移约定。下列 Python 代码块可在仓库根目录使用 Python 3.12 单独运行，不需要模型、数据库或网络。
 
 ## 1. Document、Chunk 与数据类
 

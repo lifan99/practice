@@ -13,4 +13,4 @@
 python -m pytest --run-exercises tests/rag/core/test_level01_documents.py -q
 ```
 
-完成后解释：strip 后的偏移为什么不能直接用于定位原文件？框架文档题使用清理后的正文；手写核心为位置溯源保留原文，跨接口对照前应统一正文口径。
+完成后解释：strip 后的偏移为什么不能直接用于定位原文件？前置知识见 [C1／C2 知识准备](../../knowledge.md)。

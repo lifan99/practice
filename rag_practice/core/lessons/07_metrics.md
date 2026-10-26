@@ -1,6 +1,6 @@
 # C7：手写检索指标
 
-目标：实现 [四个评估函数](../exercises/level07_metrics.py)，不使用 sklearn、RAGAS 等指标实现。所有 k>0，否则 ValueError。这里评估单位为 **chunk_id**；不要混用框架集成练习的 source 级标签。
+目标：实现 [四个评估函数](../exercises/level07_metrics.py)，不使用 sklearn、RAGAS 等指标实现。所有 k>0，否则 ValueError。评估单位统一为 **chunk_id**，相关性标签必须对应同一版切分结果。
 
 ## 指标契约
 
