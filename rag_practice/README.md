@@ -11,6 +11,10 @@
 
 core/ 无需先学 LangChain。workflows/ 的图节点是执行步骤；graph/ 的图节点是实体，两种分支可独立学习。GraphRAG 仅覆盖局部图检索教学范围，不含自动实体抽取、社区摘要与全局检索。
 
+## 前两个练习的知识准备
+
+[C1／C2 前置知识](knowledge.md)集中讲解数据类、Path、文件类型、UTF-8、字符串空白、列表与排序、切片、循环控制和正则匹配。按当前练习选择阅读，再回到任务实现；文中的小例子可独立运行，不包含练习的完整解答。
+
 ## 项目驱动的顺序
 
 C1–C4、C6–C7 后开始 [P1](../projects/knowledge-assistant/01_baseline.md)，加入 C5 做词法基线。不要等全部进阶题结束才做首轮评估。服务化与持久化进入 [P2](../projects/knowledge-assistant/02_service.md)；按失败归因选择 C8–C10，在 [P3](../projects/knowledge-assistant/03_evaluation.md)验证收益。
@@ -26,6 +30,7 @@ C1–C4、C6–C7 后开始 [P1](../projects/knowledge-assistant/01_baseline.md)
 ```text
 rag_practice/
 ├── README.md
+├── knowledge.md   # C1／C2 的前置知识与独立小示例
 ├── core/          # 手写算法与普通函数接口
 ├── langchain/     # 框架组件和输入输出桥接
 ├── workflows/     # 纠正检索工作流
